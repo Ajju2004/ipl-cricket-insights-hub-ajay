@@ -36,7 +36,7 @@ const Dashboard3D = () => {
     useFrame((state) => {
       if (meshRef.current) {
         meshRef.current.rotation.y = Math.sin(state.clock.elapsedTime) * 0.1;
-        meshRef.current.position.y = Math.sin(state.clock.elapsedTime * 2) * 0.1;
+        meshRef.current.position.y = position[1] + Math.sin(state.clock.elapsedTime * 2) * 0.1;
       }
     });
 
@@ -50,7 +50,7 @@ const Dashboard3D = () => {
   const ServerTower = ({ position }: { position: [number, number, number] }) => {
     const meshRef = useRef<any>();
     
-    useFrame((state) => {
+    useFrame(() => {
       if (meshRef.current) {
         meshRef.current.rotation.y += 0.005;
       }
@@ -97,7 +97,8 @@ const Dashboard3D = () => {
     useFrame((state) => {
       if (meshRef.current) {
         meshRef.current.rotation.z += 0.02;
-        meshRef.current.scale.setScalar(1 + Math.sin(state.clock.elapsedTime * 4) * 0.1);
+        const scale = 1 + Math.sin(state.clock.elapsedTime * 4) * 0.1;
+        meshRef.current.scale.set(scale, scale, scale);
       }
     });
 
@@ -190,13 +191,13 @@ const Dashboard3D = () => {
                 <ProcessingCone position={[0, 2, -3]} />
 
                 {/* Data Flow Spheres */}
-                <Sphere position={[-5, 3, 0]} args={[0.2]} scale={[1.5, 1.5, 1.5]}>
+                <Sphere position={[-5, 3, 0]} args={[0.2]} scale={1.5}>
                   <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.4} />
                 </Sphere>
-                <Sphere position={[5, 3, 0]} args={[0.2]} scale={[1.2, 1.2, 1.2]}>
+                <Sphere position={[5, 3, 0]} args={[0.2]} scale={1.2}>
                   <meshStandardMaterial color="#FF69B4" emissive="#FF69B4" emissiveIntensity={0.3} />
                 </Sphere>
-                <Sphere position={[0, 4, 2]} args={[0.25]} scale={[1.8, 1.8, 1.8]}>
+                <Sphere position={[0, 4, 2]} args={[0.25]} scale={1.8}>
                   <meshStandardMaterial color="#00CED1" emissive="#00CED1" emissiveIntensity={0.5} />
                 </Sphere>
 
@@ -207,7 +208,6 @@ const Dashboard3D = () => {
                   color="#4A90E2"
                   anchorX="center"
                   anchorY="middle"
-                  font="/fonts/inter-bold.woff"
                 >
                   IPL 2025 - Enterprise Analytics
                 </Text>
