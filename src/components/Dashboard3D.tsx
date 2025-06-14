@@ -166,7 +166,9 @@ const Dashboard3D = () => {
     <div className="space-y-8">
       {/* Enhanced Power BI Header */}
       <Card className="bg-gradient-to-r from-blue-900 via-purple-900 to-indigo-900 text-white border-0 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.1"%3E%3Cpath d="m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-10"></div>
+        <div className="absolute inset-0 opacity-10" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.1'%3E%3Cpath d='m36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         <CardHeader className="relative z-10">
           <div className="flex items-center justify-between">
             <div>
@@ -413,7 +415,9 @@ const Dashboard3D = () => {
 
       {/* Power BI Enterprise Footer */}
       <Card className="bg-gradient-to-r from-gray-900 via-black to-gray-900 border-gray-700 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%234FC3F7" fill-opacity="0.03"%3E%3Cpath d="M50 50c0-27.614 22.386-50 50-50v50H50z"/%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+        <div className="absolute inset-0 opacity-20" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234FC3F7' fill-opacity='0.03'%3E%3Cpath d='M50 50c0-27.614 22.386-50 50-50v50H50z'/%3E%3C/g%3E%3C/svg%3E")`
+        }}></div>
         <CardContent className="p-8 relative z-10">
           <div className="flex flex-wrap items-center justify-between text-gray-400 text-sm">
             <div className="flex items-center gap-6">
@@ -448,7 +452,7 @@ const Dashboard3D = () => {
                 <p className="text-xs text-gray-500">Uptime SLA</p>
               </div>
               <div>
-                <p className="text-2xl font-bold text-green-400">< 2s</p>
+                <p className="text-2xl font-bold text-green-400">&lt; 2s</p>
                 <p className="text-xs text-gray-500">Query Response</p>
               </div>
               <div>
