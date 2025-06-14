@@ -1,5 +1,6 @@
 
 import IplDashboard from "@/components/IplDashboard";
+import CreatorProfile from "@/components/CreatorProfile";
 
 const Index = () => {
   return (
@@ -31,6 +32,9 @@ const Index = () => {
       <div className="relative z-10">
         <IplDashboard />
       </div>
+      
+      {/* Creator Profile - positioned in bottom-right corner */}
+      <CreatorProfile />
     </div>
   );
 };
