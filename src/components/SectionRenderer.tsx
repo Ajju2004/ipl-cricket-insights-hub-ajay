@@ -47,7 +47,7 @@ const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionR
               <AuctionInsights />
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl -z-10 rounded-3xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-3xl -z-10 rounded-3xl"></div>
               <EnhancedStatsChart filteredTeams={filteredTeams} onDrillDown={onDrillDown} />
             </div>
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">

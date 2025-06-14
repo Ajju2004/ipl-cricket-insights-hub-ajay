@@ -22,10 +22,10 @@ const NavigationControls = ({ activeSection, onSectionChange }: NavigationContro
   ];
 
   return (
-    <Card className="shadow-2xl bg-white/95 backdrop-blur-md border-white/20 sticky top-4 z-40">
+    <Card className="shadow-2xl bg-slate-800/80 backdrop-blur-md border-slate-600/30 sticky top-4 z-40">
       <CardContent className="p-6">
-        <h3 className="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
-          <Calendar className="text-blue-600" size={20} />
+        <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
+          <Calendar className="text-blue-400" size={20} />
           Dashboard Navigation
         </h3>
         
@@ -39,7 +39,7 @@ const NavigationControls = ({ activeSection, onSectionChange }: NavigationContro
               className={`flex flex-col items-center gap-2 h-auto py-3 px-2 transition-all duration-300 ${
                 activeSection === section.id
                   ? `bg-gradient-to-r ${section.color} text-white shadow-lg scale-105 border-0`
-                  : "hover:scale-105 hover:shadow-md"
+                  : "hover:scale-105 hover:shadow-md bg-slate-700/50 border-slate-600/50 text-slate-200 hover:bg-slate-600/50 hover:text-white"
               }`}
             >
               <section.icon size={18} />
@@ -51,21 +51,21 @@ const NavigationControls = ({ activeSection, onSectionChange }: NavigationContro
         </div>
 
         {/* Quick Stats Bar */}
-        <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+        <div className="mt-6 flex flex-wrap justify-center gap-4 text-sm text-slate-400">
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-green-400 rounded-full"></div>
             <span>Live Dashboard</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
             <span>74 Matches Analyzed</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
             <span>🏆 RCB Champions 2025</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+            <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
             <span>₹20cr Prize Pool</span>
           </div>
         </div>
