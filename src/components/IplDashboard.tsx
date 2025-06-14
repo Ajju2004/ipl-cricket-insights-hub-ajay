@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from "react";
 import DashboardStats from "./DashboardStats";
 import PointsTable from "./PointsTable";
@@ -8,6 +7,7 @@ import EnhancedStatsChart from "./EnhancedStatsChart";
 import VenueStats from "./VenueStats";
 import AuctionInsights from "./AuctionInsights";
 import AwardsShowcase from "./AwardsShowcase";
+import WinnersPage from "./WinnersPage";
 import InteractiveFilters from "./InteractiveFilters";
 import NavigationControls from "./NavigationControls";
 import DrillThroughModal from "./DrillThroughModal";
@@ -64,6 +64,8 @@ const IplDashboard = () => {
 
   const renderSectionContent = () => {
     switch (activeSection) {
+      case "winners":
+        return <WinnersPage />;
       case "teams":
         return <PointsTable />;
       case "players":
@@ -121,6 +123,8 @@ const IplDashboard = () => {
             Interactive analytics dashboard featuring RCB's historic maiden title victory, 
             drill-through capabilities, and comprehensive tournament insights.
           </p>
+          
+          {/* ... keep existing code (tooltip sections) */}
           <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-indigo-300">
             <CustomTooltip
               data={{
@@ -197,16 +201,18 @@ const IplDashboard = () => {
         />
       </div>
 
-      {/* Interactive Filters */}
-      <div className="mb-8">
-        <InteractiveFilters 
-          currentFilters={filters}
-          onFilterChange={setFilters}
-        />
-      </div>
+      {/* Interactive Filters - Hide on Winners page */}
+      {activeSection !== "winners" && (
+        <div className="mb-8">
+          <InteractiveFilters 
+            currentFilters={filters}
+            onFilterChange={setFilters}
+          />
+        </div>
+      )}
 
-      {/* Performance Indicator */}
-      {filteredTeams.length !== teams.length && (
+      {/* Performance Indicator - Hide on Winners page */}
+      {activeSection !== "winners" && filteredTeams.length !== teams.length && (
         <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
           <div className="flex items-center gap-2">
             <BarChart3 className="text-blue-600" size={20} />

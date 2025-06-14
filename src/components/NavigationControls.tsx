@@ -1,6 +1,7 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, BarChart3, Users, Trophy, TrendingUp, MapPin, DollarSign, Calendar, Star } from "lucide-react";
+import { Home, BarChart3, Users, Trophy, TrendingUp, MapPin, DollarSign, Calendar, Star, Crown } from "lucide-react";
 
 interface NavigationControlsProps {
   activeSection: string;
@@ -10,13 +11,14 @@ interface NavigationControlsProps {
 const NavigationControls = ({ activeSection, onSectionChange }: NavigationControlsProps) => {
   const sections = [
     { id: "overview", label: "Overview", icon: Home, color: "from-blue-500 to-blue-600" },
+    { id: "winners", label: "Champions", icon: Crown, color: "from-yellow-500 to-orange-500" },
     { id: "teams", label: "Teams & Points", icon: Users, color: "from-green-500 to-green-600" },
-    { id: "players", label: "Top Performers", icon: Trophy, color: "from-yellow-500 to-yellow-600" },
-    { id: "matches", label: "Match Results", icon: BarChart3, color: "from-purple-500 to-purple-600" },
+    { id: "players", label: "Top Performers", icon: Trophy, color: "from-purple-500 to-purple-600" },
+    { id: "matches", label: "Match Results", icon: BarChart3, color: "from-indigo-500 to-indigo-600" },
     { id: "venues", label: "Venue Stats", icon: MapPin, color: "from-red-500 to-red-600" },
     { id: "auction", label: "Auction Insights", icon: DollarSign, color: "from-emerald-500 to-emerald-600" },
     { id: "awards", label: "Awards", icon: Star, color: "from-orange-500 to-orange-600" },
-    { id: "analytics", label: "Analytics", icon: TrendingUp, color: "from-indigo-500 to-indigo-600" },
+    { id: "analytics", label: "Analytics", icon: TrendingUp, color: "from-cyan-500 to-cyan-600" },
   ];
 
   return (
@@ -27,7 +29,7 @@ const NavigationControls = ({ activeSection, onSectionChange }: NavigationContro
           Dashboard Navigation
         </h3>
         
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-9 gap-3">
           {sections.map((section) => (
             <Button
               key={section.id}
@@ -59,8 +61,8 @@ const NavigationControls = ({ activeSection, onSectionChange }: NavigationContro
             <span>74 Matches Analyzed</span>
           </div>
           <div className="flex items-center gap-1">
-            <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
-            <span>RCB Champions</span>
+            <div className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></div>
+            <span>🏆 RCB Champions 2025</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
