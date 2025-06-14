@@ -50,12 +50,8 @@ const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionR
     default:
       return (
         <>
-          {/* Enhanced 3D Dashboard */}
-          <Dashboard3D />
-          
-          <div className="mt-16">
-            <DashboardStats />
-          </div>
+          {/* Removed Dashboard3D from default view to prevent dual rendering */}
+          <DashboardStats />
           
           <div className="mt-16 space-y-12">
             <NaturalLanguageQuery />

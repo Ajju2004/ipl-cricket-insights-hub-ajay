@@ -1,7 +1,7 @@
 
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text, Sphere } from '@react-three/drei';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useRef } from 'react';
 import AnimatedChart3D from './AnimatedChart3D';
 import ServerTower from './ServerTower';
 import DataCylinder from './DataCylinder';
@@ -21,20 +21,53 @@ interface Dashboard3DSceneProps {
 }
 
 const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const handleContextLost = (event: Event) => {
+      console.warn('WebGL context lost:', event);
+      event.preventDefault();
+    };
+
+    const handleContextRestored = (event: Event) => {
+      console.log('WebGL context restored:', event);
+    };
+
+    const canvas = canvasRef.current;
+    if (canvas) {
+      canvas.addEventListener('webglcontextlost', handleContextLost);
+      canvas.addEventListener('webglcontextrestored', handleContextRestored);
+
+      return () => {
+        canvas.removeEventListener('webglcontextlost', handleContextLost);
+        canvas.removeEventListener('webglcontextrestored', handleContextRestored);
+      };
+    }
+  }, []);
+
   return (
     <Canvas 
+      ref={canvasRef}
       camera={{ position: [6, 6, 6], fov: 60 }}
-      onError={(error) => console.error('Canvas error:', error)}
+      onError={(error) => {
+        console.error('Canvas error:', error);
+        throw new Error('WebGL rendering failed');
+      }}
+      gl={{ 
+        antialias: false,
+        alpha: false,
+        preserveDrawingBuffer: false,
+        powerPreference: 'default'
+      }}
+      dpr={Math.min(window.devicePixelRatio, 2)}
     >
       <Suspense fallback={null}>
-        {/* Enhanced Lighting Setup */}
-        <ambientLight intensity={0.4} />
-        <pointLight position={[10, 10, 10]} intensity={1.2} color="#ffffff" />
-        <directionalLight position={[0, 8, 5]} intensity={1} color="#4A90E2" />
-        <spotLight position={[-5, 5, 0]} intensity={0.8} color="#9B59B6" />
+        {/* Simplified Lighting Setup for better performance */}
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[0, 8, 5]} intensity={0.8} color="#4A90E2" />
 
-        {/* Performance Chart Bars */}
-        {kpiMetrics && kpiMetrics.length > 0 && kpiMetrics.map((metric, index) => (
+        {/* Performance Chart Bars - Limited to prevent GPU overload */}
+        {kpiMetrics && kpiMetrics.length > 0 && kpiMetrics.slice(0, 4).map((metric, index) => (
           <AnimatedChart3D 
             key={`chart-${index}`}
             position={[-3 + index * 1.5, 0, 0]} 
@@ -43,25 +76,17 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
           />
         ))}
 
-        {/* Infrastructure Models */}
+        {/* Reduced Infrastructure Models for better performance */}
         <ServerTower position={[4, 0, -2]} />
         <DataCylinder position={[-4, 1, 2]} color="#3498DB" />
-        <DataCylinder position={[-2, 1, 3]} color="#E74C3C" />
         <NetworkNode position={[2, 2, 2]} />
-        <ProcessingCone position={[0, 2, -3]} />
 
-        {/* Data Flow Spheres */}
-        <Sphere position={[-5, 3, 0]} args={[0.2]}>
-          <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.4} />
-        </Sphere>
-        <Sphere position={[5, 3, 0]} args={[0.2]}>
-          <meshStandardMaterial color="#FF69B4" emissive="#FF69B4" emissiveIntensity={0.3} />
-        </Sphere>
+        {/* Reduced Data Flow Spheres */}
         <Sphere position={[0, 4, 2]} args={[0.25]}>
-          <meshStandardMaterial color="#00CED1" emissive="#00CED1" emissiveIntensity={0.5} />
+          <meshStandardMaterial color="#00CED1" emissive="#00CED1" emissiveIntensity={0.3} />
         </Sphere>
 
-        {/* Enhanced 3D Labels */}
+        {/* Essential 3D Labels only */}
         <Text
           position={[0, -2.5, 0]}
           fontSize={0.4}
@@ -112,13 +137,15 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
           Engagement
         </Text>
 
-        {/* Interactive Controls */}
+        {/* Optimized Controls */}
         <OrbitControls 
           enableZoom={true} 
-          enablePan={true} 
+          enablePan={false} 
           enableRotate={true}
           autoRotate={true}
-          autoRotateSpeed={0.5}
+          autoRotateSpeed={0.3}
+          maxDistance={10}
+          minDistance={3}
         />
       </Suspense>
     </Canvas>
