@@ -31,11 +31,12 @@ const Dashboard3D = () => {
     </Box>
   );
 
-  // 3D KPI Sphere with proper prop handling
+  // 3D KPI Sphere with proper prop handling - fixed scale issue
   const KPISphere = ({ position, color, scale }: { position: [number, number, number], color: string, scale: number }) => (
-    <Sphere position={position} args={[0.3]} scale={[scale, scale, scale]}>
+    <mesh position={position} scale={scale}>
+      <sphereGeometry args={[0.3]} />
       <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
-    </Sphere>
+    </mesh>
   );
 
   return (
