@@ -8,6 +8,7 @@ import VenueStats from "./VenueStats";
 import AuctionInsights from "./AuctionInsights";
 import AwardsShowcase from "./AwardsShowcase";
 import WinnersPage from "./WinnersPage";
+import NaturalLanguageQuery from "./NaturalLanguageQuery";
 
 interface SectionRendererProps {
   activeSection: string;
@@ -33,11 +34,14 @@ const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionR
       return <AwardsShowcase />;
     case "analytics":
       return <EnhancedStatsChart filteredTeams={filteredTeams} onDrillDown={onDrillDown} />;
+    case "qa":
+      return <NaturalLanguageQuery />;
     default:
       return (
         <>
           <DashboardStats />
           <div className="mt-16 space-y-12">
+            <NaturalLanguageQuery />
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
               <PointsTable />
               <TopPerformers />
