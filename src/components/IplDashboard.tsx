@@ -5,8 +5,10 @@ import TopPerformers from "./TopPerformers";
 import RecentMatches from "./RecentMatches";
 import StatsChart from "./StatsChart";
 import VenueStats from "./VenueStats";
+import AuctionInsights from "./AuctionInsights";
+import AwardsShowcase from "./AwardsShowcase";
 import { Button } from "@/components/ui/button";
-import { RefreshCw, Download, TrendingUp } from "lucide-react";
+import { RefreshCw, Download, TrendingUp, Calendar } from "lucide-react";
 
 const IplDashboard = () => {
   return (
@@ -16,8 +18,16 @@ const IplDashboard = () => {
         <div>
           <h1 className="text-4xl font-bold text-white mb-2">IPL 2025 Insights Hub</h1>
           <p className="text-lg text-indigo-200 max-w-xl">
-            Comprehensive analytics and insights for IPL 2025. Track team performance, player statistics, match results, and tournament trends.
+            Complete analytics for IPL 2025 season featuring RCB's maiden title victory, record-breaking auction, and comprehensive tournament insights.
           </p>
+          <div className="mt-3 flex items-center gap-4 text-sm text-indigo-300">
+            <div className="flex items-center gap-1">
+              <Calendar size={14} />
+              March 22 - June 3, 2025
+            </div>
+            <div>🏆 Champions: Royal Challengers Bengaluru</div>
+            <div>💰 Total Prize: ₹20 crore</div>
+          </div>
         </div>
         <div className="mt-4 md:mt-0 flex gap-4">
           <Button variant="secondary" className="shadow-md flex items-center gap-2">
@@ -26,7 +36,7 @@ const IplDashboard = () => {
           </Button>
           <Button className="flex items-center gap-2">
             <TrendingUp size={16} />
-            Live Updates
+            Final Stats
           </Button>
         </div>
       </div>
@@ -42,6 +52,12 @@ const IplDashboard = () => {
           <TopPerformers />
         </div>
 
+        {/* Awards and Auction Insights */}
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
+          <AwardsShowcase />
+          <AuctionInsights />
+        </div>
+
         {/* Charts Section */}
         <StatsChart />
 
@@ -55,11 +71,11 @@ const IplDashboard = () => {
       {/* Footer */}
       <div className="mt-12 text-center">
         <p className="text-indigo-300 text-sm">
-          Last updated: {new Date().toLocaleString()} | Data refreshes every 5 minutes
+          IPL 2025 Season Completed | Final Updated: June 3, 2025 | RCB Champions 🏆
         </p>
         <Button variant="ghost" size="sm" className="mt-2 text-indigo-300 hover:text-white">
           <RefreshCw size={14} className="mr-2" />
-          Refresh Data
+          View Historical Data
         </Button>
       </div>
     </div>
@@ -67,3 +83,4 @@ const IplDashboard = () => {
 };
 
 export default IplDashboard;
+
