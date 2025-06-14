@@ -1,6 +1,6 @@
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text, Box, Sphere, Cylinder } from '@react-three/drei';
+import { OrbitControls, Text, Box, Sphere } from '@react-three/drei';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, BarChart3, PieChart, Activity } from "lucide-react";
@@ -38,6 +38,17 @@ const Dashboard3D = () => {
     </Sphere>
   );
 
+  // Fallback component for 3D Canvas
+  const CanvasFallback = () => (
+    <div className="flex items-center justify-center h-full bg-gray-800 rounded-lg">
+      <div className="text-center text-white">
+        <BarChart3 size={48} className="mx-auto mb-4 text-blue-400" />
+        <p className="text-lg font-semibold">3D Analytics Dashboard</p>
+        <p className="text-sm text-gray-400">Loading interactive visualization...</p>
+      </div>
+    </div>
+  );
+
   return (
     <div className="space-y-8">
       {/* Power BI Style Header */}
@@ -70,40 +81,47 @@ const Dashboard3D = () => {
             </CardTitle>
           </CardHeader>
           <CardContent className="h-full p-0">
-            <Canvas camera={{ position: [5, 5, 5], fov: 60 }}>
-              <Suspense fallback={null}>
-                {/* Lighting */}
-                <ambientLight intensity={0.5} />
-                <pointLight position={[10, 10, 10]} intensity={1} />
-                <directionalLight position={[0, 5, 5]} intensity={0.8} />
-
-                {/* 3D Charts */}
-                <Chart3D position={[-2, 0, 0]} color="#00D4AA" height={2} />
-                <Chart3D position={[-1, 0, 0]} color="#FF6B6B" height={1.5} />
-                <Chart3D position={[0, 0, 0]} color="#4ECDC4" height={2.5} />
-                <Chart3D position={[1, 0, 0]} color="#45B7D1" height={1.8} />
-                <Chart3D position={[2, 0, 0]} color="#9B59B6" height={2.2} />
-
-                {/* 3D KPI Spheres */}
-                <KPISphere position={[-3, 2, 1]} color="#FFD700" scale={1.2} />
-                <KPISphere position={[3, 2, 1]} color="#FF69B4" scale={1.0} />
-                <KPISphere position={[0, 3, 2]} color="#00CED1" scale={1.5} />
-
-                {/* 3D Text Labels */}
-                <Text
-                  position={[0, -2, 0]}
-                  fontSize={0.3}
-                  color="white"
-                  anchorX="center"
-                  anchorY="middle"
+            <div className="h-80 w-full">
+              <Suspense fallback={<CanvasFallback />}>
+                <Canvas 
+                  camera={{ position: [5, 5, 5], fov: 60 }}
+                  onCreated={({ gl }) => {
+                    gl.setClearColor('#000000');
+                  }}
                 >
-                  IPL 2025 Performance Metrics
-                </Text>
+                  {/* Lighting */}
+                  <ambientLight intensity={0.5} />
+                  <pointLight position={[10, 10, 10]} intensity={1} />
+                  <directionalLight position={[0, 5, 5]} intensity={0.8} />
 
-                {/* Interactive Controls */}
-                <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
+                  {/* 3D Charts */}
+                  <Chart3D position={[-2, 0, 0]} color="#00D4AA" height={2} />
+                  <Chart3D position={[-1, 0, 0]} color="#FF6B6B" height={1.5} />
+                  <Chart3D position={[0, 0, 0]} color="#4ECDC4" height={2.5} />
+                  <Chart3D position={[1, 0, 0]} color="#45B7D1" height={1.8} />
+                  <Chart3D position={[2, 0, 0]} color="#9B59B6" height={2.2} />
+
+                  {/* 3D KPI Spheres */}
+                  <KPISphere position={[-3, 2, 1]} color="#FFD700" scale={1.2} />
+                  <KPISphere position={[3, 2, 1]} color="#FF69B4" scale={1.0} />
+                  <KPISphere position={[0, 3, 2]} color="#00CED1" scale={1.5} />
+
+                  {/* 3D Text Labels */}
+                  <Text
+                    position={[0, -2, 0]}
+                    fontSize={0.3}
+                    color="white"
+                    anchorX="center"
+                    anchorY="middle"
+                  >
+                    IPL 2025 Performance Metrics
+                  </Text>
+
+                  {/* Interactive Controls */}
+                  <OrbitControls enableZoom={true} enablePan={true} enableRotate={true} />
+                </Canvas>
               </Suspense>
-            </Canvas>
+            </div>
           </CardContent>
         </Card>
 
