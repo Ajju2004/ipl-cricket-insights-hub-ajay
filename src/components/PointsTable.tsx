@@ -2,6 +2,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { teams } from "@/data/iplData";
 import { Trophy, TrendingUp, TrendingDown, BarChart3, Grid3X3, Boxes } from "lucide-react";
 import { useState } from "react";
@@ -124,9 +125,16 @@ const PointsTable = () => {
                     </TableCell>
                     <TableCell className="font-semibold">
                       <div className="flex items-center gap-3">
-                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-2xl shadow-lg">
-                          {team.logo}
-                        </div>
+                        <Avatar className="w-12 h-12 ring-2 ring-white shadow-lg">
+                          <AvatarImage 
+                            src={team.logoUrl} 
+                            alt={`${team.name} logo`}
+                            className="object-contain p-1"
+                          />
+                          <AvatarFallback className="text-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                            {team.logo}
+                          </AvatarFallback>
+                        </Avatar>
                         <div>
                           <div className="hidden sm:block font-bold text-lg text-gray-800 dark:text-white">
                             {team.name}

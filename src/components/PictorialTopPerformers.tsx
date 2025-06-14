@@ -1,6 +1,6 @@
-
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
-import { topPlayers } from "@/data/iplData";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { topPlayers, teams } from "@/data/iplData";
 import { Crown, Target, TrendingUp, Star, Zap, Award } from "lucide-react";
 
 const PictorialTopPerformers = () => {
@@ -18,6 +18,11 @@ const PictorialTopPerformers = () => {
     .filter(player => player.mvpPoints)
     .sort((a, b) => (b.mvpPoints || 0) - (a.mvpPoints || 0))
     .slice(0, 5);
+
+  const getTeamLogo = (teamShortName: string) => {
+    const team = teams.find(t => t.shortName === teamShortName);
+    return team?.logoUrl || team?.logo;
+  };
 
   const PlayerCard = ({ player, index, type, maxValue }: any) => {
     const isFirst = index === 0;
@@ -37,13 +42,22 @@ const PictorialTopPerformers = () => {
       return isFirst ? <Award className="text-yellow-500" size={24} /> : <Star className="text-cyan-500" size={20} />;
     };
 
+    const teamLogo = getTeamLogo(player.team);
+
     return (
       <Card className={`relative overflow-hidden bg-gradient-to-br ${getCardColor()}/10 border-l-4 ${isFirst ? 'border-yellow-400' : 'border-gray-300'} hover:scale-105 transition-transform`}>
         <CardContent className="p-4">
           <div className="flex items-center gap-3 mb-3">
-            <div className={`w-12 h-12 rounded-full flex items-center justify-center ${isFirst ? 'bg-yellow-100' : 'bg-gray-100'}`}>
-              {getIcon()}
-            </div>
+            <Avatar className="w-12 h-12 ring-2 ring-white shadow-lg">
+              <AvatarImage 
+                src={teamLogo?.startsWith('/') ? teamLogo : undefined} 
+                alt={`${player.team} logo`}
+                className="object-contain p-1"
+              />
+              <AvatarFallback className="text-lg bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                {teamLogo?.startsWith('/') ? player.team : teamLogo}
+              </AvatarFallback>
+            </Avatar>
             <div className="flex-1">
               <div className="font-bold text-lg">{player.name}</div>
               <div className="text-sm text-gray-600 flex items-center gap-2">
