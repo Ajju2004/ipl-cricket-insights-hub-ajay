@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Trophy, Calendar, MapPin, Crown, Sparkles, Star } from "lucide-react";
@@ -24,6 +23,33 @@ const WinnersPage = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
               </div>
+
+              {/* Large Background Text Elements */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="text-center transform rotate-[-5deg] opacity-10">
+                  <div className="text-[12rem] md:text-[16rem] font-black text-white leading-none tracking-tighter">
+                    VICTORY
+                  </div>
+                </div>
+              </div>
+
+              <div className="absolute top-0 right-0 transform rotate-12 opacity-5 pointer-events-none">
+                <div className="text-[8rem] md:text-[12rem] font-black text-yellow-300 leading-none">
+                  CHAMPIONS
+                </div>
+              </div>
+
+              <div className="absolute bottom-0 left-0 transform rotate-[-10deg] opacity-8 pointer-events-none">
+                <div className="text-[6rem] md:text-[10rem] font-black text-red-400 leading-none">
+                  RCB
+                </div>
+              </div>
+
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-45 opacity-5 pointer-events-none">
+                <div className="text-[10rem] md:text-[14rem] font-black text-yellow-200 leading-none">
+                  2025
+                </div>
+              </div>
               
               {/* Trophy and Text Overlay */}
               <div className="relative z-10 h-full flex items-center justify-center">
@@ -35,13 +61,13 @@ const WinnersPage = () => {
                     </div>
                   </div>
                   
-                  <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight drop-shadow-lg">
+                  <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight drop-shadow-lg relative z-20">
                     CHAMPIONS
                   </h1>
-                  <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-2">
+                  <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-2 relative z-20">
                     Royal Challengers Bengaluru
                   </p>
-                  <p className="text-lg text-yellow-200">
+                  <p className="text-lg text-yellow-200 relative z-20">
                     IPL 2025 - Historic First Title
                   </p>
                 </div>
@@ -63,8 +89,22 @@ const WinnersPage = () => {
             </div>
 
             {/* Victory Details */}
-            <div className="p-8">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <div className="p-8 relative">
+              {/* Additional Background Text for the content section */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <div className="absolute top-4 right-4 transform rotate-12 opacity-3">
+                  <div className="text-[4rem] font-black text-gray-200 leading-none">
+                    HISTORIC
+                  </div>
+                </div>
+                <div className="absolute bottom-4 left-4 transform rotate-[-8deg] opacity-3">
+                  <div className="text-[3rem] font-black text-red-200 leading-none">
+                    GLORY
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 relative z-10">
                 <div className="text-center">
                   <CustomTooltip
                     data={{
@@ -133,7 +173,14 @@ const WinnersPage = () => {
               </div>
 
               {/* Match Summary */}
-              <Card className="bg-gradient-to-r from-red-500/10 to-yellow-500/10 border-red-200">
+              <Card className="bg-gradient-to-r from-red-500/10 to-yellow-500/10 border-red-200 relative overflow-hidden">
+                {/* Background text for match summary */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="text-[8rem] font-black text-red-100/10 leading-none transform rotate-[-3deg]">
+                    FINAL
+                  </div>
+                </div>
+                
                 <CardHeader>
                   <CardTitle className="text-center text-2xl font-bold text-gray-800 flex items-center justify-center gap-3">
                     <Trophy className="text-yellow-600" size={28} />
@@ -185,12 +232,14 @@ const WinnersPage = () => {
               </Card>
 
               {/* Tournament Journey */}
-              <div className="mt-8">
-                <h3 className="text-2xl font-bold text-gray-800 mb-6 text-center flex items-center justify-center gap-3">
-                  <Crown className="text-yellow-600" size={24} />
-                  Championship Journey
-                </h3>
-                
+              <div className="mt-8 relative">
+                {/* Background text for tournament journey */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+                  <div className="text-[6rem] font-black text-yellow-100/8 leading-none transform rotate-2">
+                    JOURNEY
+                  </div>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                   <Card className="bg-blue-50 border-blue-200">
                     <CardContent className="p-4 text-center">
