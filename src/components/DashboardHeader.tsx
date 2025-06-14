@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Download, TrendingUp, Calendar, Trophy } from "lucide-react";
 import CustomTooltip from "./CustomTooltip";
@@ -10,7 +11,7 @@ const DashboardHeader = () => {
       <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 z-10"></div>
         <img 
-          src="/lovable-uploads/d291078f-6564-4e1f-a05f-c5cec83e8d97.png" 
+          src="/lovable-uploads/62c360cd-fad2-4628-baae-a12aa2cc5def.png" 
           alt="RCB Championship Celebration" 
           className="w-full h-full object-cover object-center opacity-60"
         />
