@@ -11,7 +11,8 @@ import {
   Award, 
   BarChart3, 
   Crown,
-  Sparkles
+  Sparkles,
+  FileText
 } from "lucide-react";
 
 interface NavigationControlsProps {
@@ -22,7 +23,8 @@ interface NavigationControlsProps {
 const NavigationControls = ({ activeSection, onSectionChange }: NavigationControlsProps) => {
   const sections = [
     { id: "overview", label: "Overview", icon: Home },
-    { id: "qa", label: "Ask Data", icon: Sparkles, badge: "NEW" },
+    { id: "qa", label: "Ask Data", icon: Sparkles, badge: "Enhanced" },
+    { id: "questionbank", label: "Question Bank", icon: FileText, badge: "50 Q&A" },
     { id: "winners", label: "Winners", icon: Crown },
     { id: "teams", label: "Teams", icon: Users },
     { id: "players", label: "Players", icon: Trophy },

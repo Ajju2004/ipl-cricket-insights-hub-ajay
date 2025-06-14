@@ -1,18 +1,18 @@
-
 import { useState, useMemo } from "react";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Search, Sparkles, TrendingUp, Users, Trophy, MapPin, Crown, Target } from "lucide-react";
+import { Search, Sparkles, TrendingUp, Users, Trophy, MapPin, Crown, Target, FileText } from "lucide-react";
 import { teams, topPlayers, recentMatches, venues, awards, auctionHighlights } from "@/data/iplData";
 
 interface QueryResult {
-  type: "teams" | "players" | "matches" | "venues" | "awards" | "stats" | "auction" | "comparison";
+  type: "teams" | "players" | "matches" | "venues" | "awards" | "stats" | "auction" | "comparison" | "detailed";
   title: string;
   data: any[];
   icon: React.ReactNode;
   summary?: string;
+  detailedAnswer?: string;
 }
 
 const NaturalLanguageQuery = () => {
@@ -22,18 +22,110 @@ const NaturalLanguageQuery = () => {
 
   const suggestions = [
     "Who won IPL 2025?",
-    "Show me top run scorers",
+    "Who won the Orange Cap?",
+    "Who was the most expensive player?",
+    "What was the final score?",
+    "Which venue had highest scores?",
+    "Who hit the most sixes?",
     "Which team spent most in auction?",
-    "Most expensive player bought",
-    "Best bowling figures",
-    "Final match details",
-    "Venue with highest scores",
-    "Awards winners list"
+    "Who won Purple Cap?",
+    "What was RCB's final position?",
+    "Who had the best strike rate?"
   ];
 
   const parseQuery = (userQuery: string): QueryResult | null => {
     const query = userQuery.toLowerCase().trim();
     
+    // Specific detailed answers for common questions
+    if (query.includes("orange cap") || query.includes("most runs") || query.includes("run scorer")) {
+      return {
+        type: "detailed",
+        title: "Orange Cap Winner - Most Runs",
+        data: [topPlayers.find(p => p.runs === Math.max(...topPlayers.map(p => p.runs)))!],
+        icon: <Trophy className="text-orange-500" size={20} />,
+        summary: "Sai Sudharsan from Gujarat Titans won the Orange Cap with 759 runs.",
+        detailedAnswer: "Sai Sudharsan from Gujarat Titans claimed the prestigious Orange Cap by scoring 759 runs in IPL 2025. He maintained an impressive average of 54.21 and a strike rate of 156.17, hitting 88 fours and 21 sixes throughout the tournament. His consistent performance was crucial in GT's playoff qualification, and he also won the Emerging Player award, making him one of the standout performers of the season."
+      };
+    }
+
+    if (query.includes("purple cap") || query.includes("most wickets") || query.includes("wicket taker")) {
+      return {
+        type: "detailed",
+        title: "Purple Cap Winner - Most Wickets",
+        data: [topPlayers.find(p => p.wickets === Math.max(...topPlayers.map(p => p.wickets)))!],
+        icon: <Target className="text-purple-500" size={20} />,
+        summary: "Prasidh Krishna from Gujarat Titans won the Purple Cap with 25 wickets.",
+        detailedAnswer: "Prasidh Krishna from Gujarat Titans dominated the bowling charts to win the Purple Cap with 25 wickets at an excellent average of 18.5. His consistent wicket-taking ability was instrumental in Gujarat Titans' strong bowling performance throughout the season. Krishna's pace and variations troubled batsmen across all conditions, making him the most successful bowler of IPL 2025."
+      };
+    }
+
+    if (query.includes("most expensive") || query.includes("highest price") || query.includes("pant")) {
+      return {
+        type: "detailed",
+        title: "Most Expensive Player - Auction Record",
+        data: [auctionHighlights[0]],
+        icon: <Trophy className="text-green-500" size={20} />,
+        summary: "Rishabh Pant was bought for ₹27.0 crore by LSG.",
+        detailedAnswer: "Rishabh Pant created history by becoming the most expensive player in IPL auction history when Lucknow Super Giants acquired him for ₹27.0 crore. The wicket-keeper batsman justified his price tag by scoring 485 runs at an average of 42.6 and strike rate of 148.2, hitting 45 fours and 28 sixes. His leadership qualities and explosive batting made him a game-changer for LSG throughout the tournament."
+      };
+    }
+
+    if (query.includes("final") || query.includes("championship") || query.includes("winner") || query.includes("won ipl")) {
+      const finalMatch = recentMatches.find(m => m.stage === "Final");
+      return {
+        type: "detailed",
+        title: "IPL 2025 Final & Championship",
+        data: finalMatch ? [finalMatch] : [],
+        icon: <Crown className="text-yellow-500" size={20} />,
+        summary: "RCB won their first IPL title, defeating PBKS by 6 runs in the final.",
+        detailedAnswer: "Royal Challengers Bengaluru finally broke their title drought by winning IPL 2025, defeating Punjab Kings by 6 runs in a thrilling final at Narendra Modi Stadium, Ahmedabad. RCB scored 190/9 and successfully defended it as PBKS managed 184/7. This was RCB's maiden IPL title after three previous final defeats, with the victory worth ₹20 crore in prize money. The championship was a culmination of consistent performance throughout the season where they finished 2nd in the league stage."
+      };
+    }
+
+    if (query.includes("most sixes") || query.includes("six") || query.includes("pooran")) {
+      return {
+        type: "detailed",
+        title: "Most Sixes Award Winner",
+        data: [{ player: "Nicholas Pooran", team: "LSG", sixes: 42, award: "Most Sixes" }],
+        icon: <Sparkles className="text-red-500" size={20} />,
+        summary: "Nicholas Pooran hit the most sixes with 42 maximums.",
+        detailedAnswer: "Nicholas Pooran from Lucknow Super Giants was the six-hitting king of IPL 2025, launching 42 maximums throughout the tournament. His power-hitting ability and clean striking made him a fan favorite and earned him the 'Most Sixes' award. Pooran's explosive batting complemented LSG's strong batting lineup and provided crucial momentum in several matches."
+      };
+    }
+
+    if (query.includes("highest strike rate") || query.includes("fastest") || query.includes("suryavanshi")) {
+      return {
+        type: "detailed",
+        title: "Highest Strike Rate - Striker of the Season",
+        data: [topPlayers.find(p => p.name === "Vaibhav Suryavanshi")!],
+        icon: <Sparkles className="text-red-500" size={20} />,
+        summary: "Vaibhav Suryavanshi had the highest strike rate at 198.7.",
+        detailedAnswer: "Vaibhav Suryavanshi from Rajasthan Royals created a sensation with his explosive strike rate of 198.7, earning him the 'Striker of the Season' award. Despite being bought for just ₹1.1 crore, the young batsman scored 156 runs with 18 fours and 12 sixes, showcasing fearless batting. His aggressive approach and ability to score quickly made him one of the most exciting prospects of the tournament."
+      };
+    }
+
+    if (query.includes("team spent") || query.includes("auction spending") || query.includes("pbks") && query.includes("spend")) {
+      return {
+        type: "detailed",
+        title: "Highest Auction Spending Team",
+        data: [teams.find(t => t.shortName === "PBKS")!],
+        icon: <TrendingUp className="text-purple-500" size={20} />,
+        summary: "Punjab Kings spent the most with ₹110.5 crore in the auction.",
+        detailedAnswer: "Punjab Kings were the biggest spenders in the IPL 2025 auction, investing ₹110.5 crore in building their squad with only ₹0.35 crore remaining in their purse. Their aggressive bidding strategy paid off as they topped the points table with 20 points from 10 wins in 14 matches. Key acquisitions included Shreyas Iyer (₹26.75 cr), Arshdeep Singh (₹18 cr), and Yuzvendra Chahal (₹18 cr), which strengthened their batting and bowling departments significantly."
+      };
+    }
+
+    if (query.includes("mvp") || query.includes("most valuable") || query.includes("suryakumar")) {
+      return {
+        type: "detailed",
+        title: "Most Valuable Player Award",
+        data: [topPlayers.find(p => p.name === "Suryakumar Yadav")!],
+        icon: <Crown className="text-gold-500" size={20} />,
+        summary: "Suryakumar Yadav won the MVP award with 320.5 points.",
+        detailedAnswer: "Suryakumar Yadav from Mumbai Indians was crowned the Most Valuable Player of IPL 2025 with 320.5 MVP points. He scored 717 runs at an outstanding average of 65.18 and explosive strike rate of 167.92, including 69 fours and 38 sixes. His consistent match-winning performances and ability to accelerate when needed made him invaluable to MI's campaign, helping them secure a playoff spot."
+      };
+    }
+
     // Championship/Winner queries
     if (query.includes("winner") || query.includes("champion") || query.includes("won ipl") || query.includes("title")) {
       return {
@@ -242,6 +334,16 @@ const NaturalLanguageQuery = () => {
             <p className="text-blue-200 font-medium">{results.summary}</p>
           </div>
         )}
+
+        {results.detailedAnswer && (
+          <div className="mb-4 p-4 bg-gradient-to-r from-green-600/20 to-blue-600/20 rounded-lg border border-green-500/30">
+            <div className="flex items-start gap-2 mb-2">
+              <FileText className="text-green-400 mt-1" size={16} />
+              <h4 className="font-semibold text-green-400">Detailed Answer:</h4>
+            </div>
+            <p className="text-green-200 leading-relaxed">{results.detailedAnswer}</p>
+          </div>
+        )}
         
         {(() => {
           switch (results.type) {
@@ -283,6 +385,7 @@ const NaturalLanguageQuery = () => {
               );
 
             case "players":
+            case "detailed":
               return (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {results.data.map((player: any) => (
@@ -442,11 +545,11 @@ const NaturalLanguageQuery = () => {
           <Sparkles className="text-purple-400" size={24} />
           Ask Your Data
           <Badge variant="outline" className="ml-2 text-xs">
-            AI-Powered Q&A
+            Enhanced AI Q&A
           </Badge>
         </CardTitle>
         <p className="text-sm text-slate-300">
-          Ask questions about IPL 2025 - teams, players, matches, auction, awards, and more
+          Ask detailed questions about IPL 2025 - teams, players, matches, auction, awards, and more
         </p>
       </CardHeader>
       <CardContent>
@@ -456,7 +559,7 @@ const NaturalLanguageQuery = () => {
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={20} />
             <Input
               type="text"
-              placeholder="Ask about IPL 2025... e.g., 'Who won IPL 2025?' or 'Show me top run scorers'"
+              placeholder="Ask detailed questions... e.g., 'Who won the Orange Cap?' or 'Which team spent most in auction?'"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
@@ -474,7 +577,7 @@ const NaturalLanguageQuery = () => {
 
         {/* Quick Suggestions */}
         <div className="mb-6">
-          <h4 className="text-sm font-semibold text-slate-300 mb-2">Try asking:</h4>
+          <h4 className="text-sm font-semibold text-slate-300 mb-2">Popular questions:</h4>
           <div className="flex flex-wrap gap-2">
             {suggestions.map((suggestion, index) => (
               <Badge

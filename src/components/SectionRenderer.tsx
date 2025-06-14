@@ -9,6 +9,7 @@ import AuctionInsights from "./AuctionInsights";
 import AwardsShowcase from "./AwardsShowcase";
 import WinnersPage from "./WinnersPage";
 import NaturalLanguageQuery from "./NaturalLanguageQuery";
+import QuestionBank from "./QuestionBank";
 
 interface SectionRendererProps {
   activeSection: string;
@@ -35,7 +36,14 @@ const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionR
     case "analytics":
       return <EnhancedStatsChart filteredTeams={filteredTeams} onDrillDown={onDrillDown} />;
     case "qa":
-      return <NaturalLanguageQuery />;
+      return (
+        <div className="space-y-8">
+          <NaturalLanguageQuery />
+          <QuestionBank />
+        </div>
+      );
+    case "questionbank":
+      return <QuestionBank />;
     default:
       return (
         <>
