@@ -1,7 +1,6 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Home, BarChart3, Users, Trophy, TrendingUp, MapPin, DollarSign, Calendar } from "lucide-react";
+import { Home, BarChart3, Users, Trophy, TrendingUp, MapPin, DollarSign, Calendar, Star } from "lucide-react";
 
 interface NavigationControlsProps {
   activeSection: string;
