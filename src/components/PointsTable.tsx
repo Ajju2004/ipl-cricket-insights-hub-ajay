@@ -3,15 +3,16 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { teams } from "@/data/iplData";
-import { Trophy, TrendingUp, TrendingDown } from "lucide-react";
+import { Trophy, TrendingUp, TrendingDown, BarChart3, Grid3X3, Boxes } from "lucide-react";
 import { useState } from "react";
 import PointsTable3D from "./dashboard3d/PointsTable3D";
+import PictorialPointsTable from "./PictorialPointsTable";
 import WebGLErrorBoundary from "./dashboard3d/WebGLErrorBoundary";
 import WebGLFallback from "./dashboard3d/WebGLFallback";
 import { checkWebGLSupport } from "@/utils/webglUtils";
 
 const PointsTable = () => {
-  const [view3D, setView3D] = useState(false);
+  const [viewMode, setViewMode] = useState<"table" | "pictorial" | "3d">("pictorial");
   const [webglSupported, setWebglSupported] = useState<boolean | null>(null);
 
   const sortedTeams = [...teams].sort((a, b) => {
@@ -19,13 +20,12 @@ const PointsTable = () => {
     return b.nrr - a.nrr;
   });
 
-  // Check WebGL support when switching to 3D
   const toggle3D = async () => {
-    if (!view3D && webglSupported === null) {
+    if (viewMode !== "3d" && webglSupported === null) {
       const isSupported = checkWebGLSupport();
       setWebglSupported(isSupported);
     }
-    setView3D(!view3D);
+    setViewMode("3d");
   };
 
   const getPositionColor = (position: number) => {
@@ -49,14 +49,33 @@ const PointsTable = () => {
             🏆
           </div>
           IPL 2025 Points Table
-          <div className="ml-auto flex items-center gap-3">
+          <div className="ml-auto flex items-center gap-2">
             <Button
-              onClick={toggle3D}
-              variant={view3D ? "default" : "outline"}
+              onClick={() => setViewMode("pictorial")}
+              variant={viewMode === "pictorial" ? "default" : "outline"}
               size="sm"
               className="font-semibold"
             >
-              {view3D ? "2D View" : "3D View"}
+              <Grid3X3 size={16} className="mr-1" />
+              Pictorial
+            </Button>
+            <Button
+              onClick={() => setViewMode("table")}
+              variant={viewMode === "table" ? "default" : "outline"}
+              size="sm"
+              className="font-semibold"
+            >
+              <BarChart3 size={16} className="mr-1" />
+              Table
+            </Button>
+            <Button
+              onClick={toggle3D}
+              variant={viewMode === "3d" ? "default" : "outline"}
+              size="sm"
+              className="font-semibold"
+            >
+              <Boxes size={16} className="mr-1" />
+              3D View
             </Button>
             <div className="text-sm font-normal bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
               Final Standings
@@ -65,7 +84,7 @@ const PointsTable = () => {
         </CardTitle>
       </CardHeader>
       <CardContent className="p-0">
-        {view3D ? (
+        {viewMode === "3d" ? (
           webglSupported === false ? (
             <WebGLFallback />
           ) : (
@@ -73,6 +92,10 @@ const PointsTable = () => {
               <PointsTable3D />
             </WebGLErrorBoundary>
           )
+        ) : viewMode === "pictorial" ? (
+          <div className="p-6">
+            <PictorialPointsTable />
+          </div>
         ) : (
           <div className="overflow-x-auto">
             <Table>
