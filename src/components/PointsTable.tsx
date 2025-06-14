@@ -2,6 +2,7 @@
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { teams } from "@/data/iplData";
+import { Trophy, TrendingUp, TrendingDown } from "lucide-react";
 
 const PointsTable = () => {
   const sortedTeams = [...teams].sort((a, b) => {
@@ -9,48 +10,98 @@ const PointsTable = () => {
     return b.nrr - a.nrr;
   });
 
+  const getPositionColor = (position: number) => {
+    if (position === 1) return "bg-gradient-to-r from-yellow-400/20 to-orange-500/20 border-l-4 border-yellow-400";
+    if (position <= 4) return "bg-gradient-to-r from-green-400/10 to-emerald-500/10 border-l-4 border-green-400";
+    if (position <= 6) return "bg-gradient-to-r from-blue-400/10 to-indigo-500/10 border-l-4 border-blue-400";
+    return "bg-gradient-to-r from-gray-400/5 to-gray-500/5 border-l-4 border-gray-400";
+  };
+
+  const getPositionBadge = (position: number) => {
+    if (position === 1) return <Trophy size={16} className="text-yellow-500 mr-2" />;
+    if (position <= 4) return <TrendingUp size={16} className="text-green-500 mr-2" />;
+    return <TrendingDown size={16} className="text-gray-400 mr-2" />;
+  };
+
   return (
-    <Card className="shadow-xl bg-white/95 dark:bg-background">
-      <CardHeader>
-        <CardTitle className="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
-          🏆 IPL 2025 Points Table
+    <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 overflow-hidden">
+      <CardHeader className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-b border-white/10">
+        <CardTitle className="text-2xl font-black text-gray-800 dark:text-white flex items-center gap-3">
+          <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
+            🏆
+          </div>
+          IPL 2025 Points Table
+          <div className="ml-auto text-sm font-normal bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Final Standings
+          </div>
         </CardTitle>
       </CardHeader>
-      <CardContent>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead className="w-12">Pos</TableHead>
-              <TableHead>Team</TableHead>
-              <TableHead className="text-center">M</TableHead>
-              <TableHead className="text-center">W</TableHead>
-              <TableHead className="text-center">L</TableHead>
-              <TableHead className="text-center">Pts</TableHead>
-              <TableHead className="text-center">NRR</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {sortedTeams.map((team, index) => (
-              <TableRow key={team.id} className="hover:bg-gray-50 dark:hover:bg-gray-800">
-                <TableCell className="font-medium">{index + 1}</TableCell>
-                <TableCell className="font-medium">
-                  <div className="flex items-center gap-2">
-                    <span className="text-lg">{team.logo}</span>
-                    <span className="hidden sm:inline">{team.name}</span>
-                    <span className="sm:hidden font-bold">{team.shortName}</span>
-                  </div>
-                </TableCell>
-                <TableCell className="text-center">{team.matches}</TableCell>
-                <TableCell className="text-center text-green-600 font-semibold">{team.wins}</TableCell>
-                <TableCell className="text-center text-red-600 font-semibold">{team.losses}</TableCell>
-                <TableCell className="text-center font-bold text-blue-600">{team.points}</TableCell>
-                <TableCell className={`text-center font-semibold ${team.nrr >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {team.nrr.toFixed(2)}
-                </TableCell>
+      <CardContent className="p-0">
+        <div className="overflow-x-auto">
+          <Table>
+            <TableHeader>
+              <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-b-2 border-gray-200 dark:border-gray-700">
+                <TableHead className="w-16 font-bold text-gray-700 dark:text-gray-300">Pos</TableHead>
+                <TableHead className="font-bold text-gray-700 dark:text-gray-300 min-w-[200px]">Team</TableHead>
+                <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">M</TableHead>
+                <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">W</TableHead>
+                <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">L</TableHead>
+                <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">Pts</TableHead>
+                <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">NRR</TableHead>
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+            </TableHeader>
+            <TableBody>
+              {sortedTeams.map((team, index) => (
+                <TableRow 
+                  key={team.id} 
+                  className={`hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-300 ${getPositionColor(index + 1)}`}
+                >
+                  <TableCell className="font-bold text-lg">
+                    <div className="flex items-center">
+                      {getPositionBadge(index + 1)}
+                      {index + 1}
+                    </div>
+                  </TableCell>
+                  <TableCell className="font-semibold">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-2xl shadow-lg">
+                        {team.logo}
+                      </div>
+                      <div>
+                        <div className="hidden sm:block font-bold text-lg text-gray-800 dark:text-white">
+                          {team.name}
+                        </div>
+                        <div className="sm:hidden font-bold text-lg text-gray-800 dark:text-white">
+                          {team.shortName}
+                        </div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                          {index === 0 ? "🏆 Champions" : index < 4 ? "✅ Qualified" : "❌ Eliminated"}
+                        </div>
+                      </div>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-center font-bold text-lg">{team.matches}</TableCell>
+                  <TableCell className="text-center text-green-600 font-bold text-lg bg-green-50 dark:bg-green-900/20 rounded-md">
+                    {team.wins}
+                  </TableCell>
+                  <TableCell className="text-center text-red-600 font-bold text-lg bg-red-50 dark:bg-red-900/20 rounded-md">
+                    {team.losses}
+                  </TableCell>
+                  <TableCell className="text-center font-black text-xl text-blue-600 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+                    {team.points}
+                  </TableCell>
+                  <TableCell className={`text-center font-bold text-lg rounded-md ${
+                    team.nrr >= 0 
+                      ? 'text-green-600 bg-green-50 dark:bg-green-900/20' 
+                      : 'text-red-600 bg-red-50 dark:bg-red-900/20'
+                  }`}>
+                    {team.nrr >= 0 ? '+' : ''}{team.nrr.toFixed(2)}
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </div>
       </CardContent>
     </Card>
   );
