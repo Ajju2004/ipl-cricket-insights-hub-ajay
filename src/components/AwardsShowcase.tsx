@@ -23,7 +23,7 @@ const AwardsShowcase = () => {
 
   return (
     <>
-      <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-600/30">
+      <Card className="shadow-xl bg-slate-800/40 backdrop-blur-md border-slate-600/30">
         <CardHeader>
           <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
             🏆 IPL 2025 Awards & Recognition
@@ -34,7 +34,7 @@ const AwardsShowcase = () => {
             {awards.map((award) => (
               <div 
                 key={award.id} 
-                className="bg-gradient-to-br from-slate-700/40 to-slate-600/40 p-4 rounded-lg border border-slate-500/30 backdrop-blur-sm cursor-pointer hover:scale-105 transition-transform"
+                className="bg-gradient-to-br from-slate-700/30 to-slate-600/30 p-4 rounded-lg border border-slate-500/30 backdrop-blur-sm cursor-pointer hover:scale-105 transition-transform"
                 onClick={() => handleAwardClick(award)}
               >
                 <div className="text-center mb-3">

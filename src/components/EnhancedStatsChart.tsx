@@ -64,7 +64,7 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
       {/* Enhanced Performance Chart */}
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 xl:col-span-2">
+      <Card className="shadow-2xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border-white/20 xl:col-span-2">
         <CardHeader className="bg-gradient-to-r from-blue-600/10 to-green-600/10 border-b border-white/10">
           <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
             <CustomTooltip 
@@ -136,7 +136,7 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
       </Card>
 
       {/* Enhanced Points Distribution */}
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20">
+      <Card className="shadow-2xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border-white/20">
         <CardHeader className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 border-b border-white/10">
           <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
             <CustomTooltip 

@@ -35,7 +35,7 @@ const AuctionInsights = () => {
   
   return (
     <>
-      <Card className="shadow-xl bg-white/95 dark:bg-background">
+      <Card className="shadow-xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md">
         <CardHeader>
           <CardTitle className="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
             💰 IPL 2025 Mega Auction Highlights
@@ -52,7 +52,7 @@ const AuctionInsights = () => {
               {recordBuys.map((player, index) => (
                 <div 
                   key={index} 
-                  className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-50 to-orange-50 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700 cursor-pointer hover:scale-[1.02] transition-transform"
+                  className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-50/80 to-orange-50/80 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
                   onClick={() => handlePlayerClick(player.player, player.team)}
                 >
                   <div>
@@ -76,7 +76,7 @@ const AuctionInsights = () => {
                 Youngest Player
               </h3>
               <div 
-                className="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-700 cursor-pointer hover:scale-[1.02] transition-transform"
+                className="p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-700 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
                 onClick={() => handlePlayerClick(youngestPlayer.player, youngestPlayer.team)}
               >
                 <div className="flex justify-between items-center">
@@ -103,7 +103,7 @@ const AuctionInsights = () => {
               {teams.slice(0, 6).map((team) => (
                 <div 
                   key={team.id} 
-                  className="flex justify-between items-center p-3 bg-gray-50 dark:bg-gray-800 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+                  className="flex justify-between items-center p-3 bg-gray-50/80 dark:bg-gray-800/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
                   onClick={() => handleTeamClick(team)}
                 >
                   <div className="flex items-center gap-2">

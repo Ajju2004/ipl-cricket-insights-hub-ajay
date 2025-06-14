@@ -76,7 +76,7 @@ const DashboardStats = () => {
       <div className="text-center mb-12">
         <div className="relative inline-block">
           <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 blur-2xl rounded-full"></div>
-          <div className="relative bg-white/15 backdrop-blur-md rounded-2xl px-8 py-4 mb-6 border border-white/20">
+          <div className="relative bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4 mb-6 border border-white/20">
             <span className="text-white font-black text-2xl tracking-wide">
               🏆 IPL 2025 SEASON COMPLETE 🏆
             </span>
@@ -92,7 +92,7 @@ const DashboardStats = () => {
         {stats.map((stat, index) => (
           <Card
             key={stat.label}
-            className="group bg-white/15 border-white/20 shadow-2xl backdrop-blur-md hover:bg-white/20 transition-all duration-500 hover:scale-105 hover:-translate-y-2 relative overflow-hidden"
+            className="group bg-white/10 border-white/20 shadow-2xl backdrop-blur-md hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 relative overflow-hidden"
           >
             {/* Gradient Background */}
             <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
