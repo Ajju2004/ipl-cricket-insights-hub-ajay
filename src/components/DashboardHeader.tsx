@@ -1,3 +1,4 @@
+
 import { Button } from "@/components/ui/button";
 import { Download, TrendingUp, Calendar, Trophy } from "lucide-react";
 import CustomTooltip from "./CustomTooltip";
@@ -5,9 +6,9 @@ import NaturalLanguageQuery from "./NaturalLanguageQuery";
 
 const DashboardHeader = () => {
   return (
-    <div className="mb-12 relative">
-      {/* RCB Championship Background Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
+    <div className="mb-12 relative mt-16">
+      {/* RCB Championship Background Image - positioned lower */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl mt-12">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 z-10"></div>
         <img 
           src="/lovable-uploads/c5073d17-7922-4a80-8add-ea9ef69441f8.png" 
@@ -17,7 +18,7 @@ const DashboardHeader = () => {
       </div>
 
       <div className="relative z-20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pt-8">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl -z-10 rounded-full"></div>
             <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-tight leading-none drop-shadow-2xl">
@@ -27,7 +28,7 @@ const DashboardHeader = () => {
               </span>
             </h1>
             <p className="text-xl text-slate-200 max-w-2xl leading-relaxed font-medium drop-shadow-lg">
-              Interactive analytics dashboard featuring RCB's historic maiden title victory, 
+              Interactive analytics dashboard featuring RCB's historic title victory, 
               drill-through capabilities, and comprehensive tournament insights.
             </p>
             
@@ -54,7 +55,7 @@ const DashboardHeader = () => {
                 data={{
                   title: "Championship Details",
                   value: "RCB First Title",
-                  description: "Royal Challengers Bengaluru finally won their maiden IPL title",
+                  description: "Royal Challengers Bengaluru finally won their first IPL title",
                   additionalInfo: [
                     { label: "Final Margin", value: "6 runs" },
                     { label: "Prize Money", value: "₹20 crore" },
