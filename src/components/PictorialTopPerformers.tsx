@@ -1,9 +1,20 @@
+
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { topPlayers, teams } from "@/data/iplData";
 import { Crown, Target, TrendingUp, Star, Zap, Award } from "lucide-react";
+import { useState } from "react";
+import DrillThroughModal from "./DrillThroughModal";
+
+interface DrillThroughData {
+  type: "team" | "player" | "match";
+  id: string;
+  title: string;
+}
 
 const PictorialTopPerformers = () => {
+  const [drillThroughData, setDrillThroughData] = useState<DrillThroughData | null>(null);
+
   const topBatsmen = topPlayers
     .filter(player => player.role === "Batsman" || player.role === "Wicket-keeper" || player.role === "All-rounder")
     .sort((a, b) => b.runs - a.runs)
@@ -22,6 +33,14 @@ const PictorialTopPerformers = () => {
   const getTeamLogo = (teamShortName: string) => {
     const team = teams.find(t => t.shortName === teamShortName);
     return team?.logoUrl || team?.logo;
+  };
+
+  const handlePlayerClick = (player: typeof topPlayers[0]) => {
+    setDrillThroughData({
+      type: "player",
+      id: player.id,
+      title: player.name
+    });
   };
 
   const PlayerCard = ({ player, index, type, maxValue }: any) => {
@@ -45,7 +64,10 @@ const PictorialTopPerformers = () => {
     const teamLogo = getTeamLogo(player.team);
 
     return (
-      <Card className={`relative overflow-hidden bg-gradient-to-br ${getCardColor()}/10 border-l-4 ${isFirst ? 'border-yellow-400' : 'border-gray-300'} hover:scale-105 transition-transform`}>
+      <Card 
+        className={`relative overflow-hidden bg-gradient-to-br ${getCardColor()}/10 border-l-4 ${isFirst ? 'border-yellow-400' : 'border-gray-300'} hover:scale-105 transition-transform cursor-pointer`}
+        onClick={() => handlePlayerClick(player)}
+      >
         <CardContent className="p-4">
           <div className="flex items-center gap-3 mb-3">
             <Avatar className="w-12 h-12 ring-2 ring-white shadow-lg">
@@ -122,97 +144,104 @@ const PictorialTopPerformers = () => {
   };
 
   return (
-    <div className="space-y-8">
-      {/* Top Batsmen Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
-            🏏
+    <>
+      <div className="space-y-8">
+        {/* Top Batsmen Section */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+              🏏
+            </div>
+            <h2 className="text-2xl font-bold">Top Batsmen</h2>
           </div>
-          <h2 className="text-2xl font-bold">Top Batsmen</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topBatsmen.map((player, index) => (
+              <PlayerCard 
+                key={player.id} 
+                player={player} 
+                index={index} 
+                type="runs"
+                maxValue={Math.max(...topBatsmen.map(p => p.runs))}
+              />
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {topBatsmen.map((player, index) => (
-            <PlayerCard 
-              key={player.id} 
-              player={player} 
-              index={index} 
-              type="runs"
-              maxValue={Math.max(...topBatsmen.map(p => p.runs))}
-            />
-          ))}
+
+        {/* Top Bowlers Section */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+              🎯
+            </div>
+            <h2 className="text-2xl font-bold">Top Bowlers</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {topBowlers.map((player, index) => (
+              <PlayerCard 
+                key={player.id} 
+                player={player} 
+                index={index} 
+                type="wickets"
+                maxValue={Math.max(...topBowlers.map(p => p.wickets))}
+              />
+            ))}
+          </div>
         </div>
+
+        {/* MVP Race Section */}
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full flex items-center justify-center">
+              👑
+            </div>
+            <h2 className="text-2xl font-bold">MVP Race</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {mvpPlayers.map((player, index) => (
+              <PlayerCard 
+                key={player.id} 
+                player={player} 
+                index={index} 
+                type="mvp"
+                maxValue={Math.max(...mvpPlayers.map(p => p.mvpPoints || 0))}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Performance Summary */}
+        <Card className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border-indigo-300/30">
+          <CardHeader>
+            <CardTitle className="text-center text-xl font-bold">IPL 2025 Performance Highlights</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+              <div>
+                <div className="text-3xl font-bold text-orange-600">{Math.max(...topBatsmen.map(p => p.runs))}</div>
+                <div className="text-sm text-gray-600">Highest Runs</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-purple-600">{Math.max(...topBowlers.map(p => p.wickets))}</div>
+                <div className="text-sm text-gray-600">Most Wickets</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-green-600">{Math.max(...topBatsmen.map(p => p.strikeRate)).toFixed(0)}</div>
+                <div className="text-sm text-gray-600">Best Strike Rate</div>
+              </div>
+              <div>
+                <div className="text-3xl font-bold text-blue-600">{Math.max(...mvpPlayers.map(p => p.mvpPoints || 0))}</div>
+                <div className="text-sm text-gray-600">MVP Points</div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      {/* Top Bowlers Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
-            🎯
-          </div>
-          <h2 className="text-2xl font-bold">Top Bowlers</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {topBowlers.map((player, index) => (
-            <PlayerCard 
-              key={player.id} 
-              player={player} 
-              index={index} 
-              type="wickets"
-              maxValue={Math.max(...topBowlers.map(p => p.wickets))}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* MVP Race Section */}
-      <div>
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-10 h-10 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full flex items-center justify-center">
-            👑
-          </div>
-          <h2 className="text-2xl font-bold">MVP Race</h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {mvpPlayers.map((player, index) => (
-            <PlayerCard 
-              key={player.id} 
-              player={player} 
-              index={index} 
-              type="mvp"
-              maxValue={Math.max(...mvpPlayers.map(p => p.mvpPoints || 0))}
-            />
-          ))}
-        </div>
-      </div>
-
-      {/* Performance Summary */}
-      <Card className="bg-gradient-to-r from-indigo-500/10 to-purple-500/10 border-indigo-300/30">
-        <CardHeader>
-          <CardTitle className="text-center text-xl font-bold">IPL 2025 Performance Highlights</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-orange-600">{Math.max(...topBatsmen.map(p => p.runs))}</div>
-              <div className="text-sm text-gray-600">Highest Runs</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-purple-600">{Math.max(...topBowlers.map(p => p.wickets))}</div>
-              <div className="text-sm text-gray-600">Most Wickets</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-green-600">{Math.max(...topBatsmen.map(p => p.strikeRate)).toFixed(0)}</div>
-              <div className="text-sm text-gray-600">Best Strike Rate</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-blue-600">{Math.max(...mvpPlayers.map(p => p.mvpPoints || 0))}</div>
-              <div className="text-sm text-gray-600">MVP Points</div>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    </div>
+      <DrillThroughModal 
+        data={drillThroughData}
+        onClose={() => setDrillThroughData(null)}
+      />
+    </>
   );
 };
 

@@ -4,7 +4,11 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { teams } from "@/data/iplData";
 import { Trophy, TrendingUp, TrendingDown, Target, Award, Users } from "lucide-react";
 
-const PictorialPointsTable = () => {
+interface PictorialPointsTableProps {
+  onTeamClick?: (team: typeof teams[0]) => void;
+}
+
+const PictorialPointsTable = ({ onTeamClick }: PictorialPointsTableProps) => {
   const sortedTeams = [...teams].sort((a, b) => {
     if (b.points !== a.points) return b.points - a.points;
     return b.nrr - a.nrr;
@@ -83,7 +87,11 @@ const PictorialPointsTable = () => {
           const pointsPercentage = (team.points / Math.max(...teams.map(t => t.points))) * 100;
           
           return (
-            <Card key={team.id} className="relative overflow-hidden hover:scale-105 transition-transform shadow-xl">
+            <Card 
+              key={team.id} 
+              className="relative overflow-hidden hover:scale-105 transition-transform shadow-xl cursor-pointer"
+              onClick={() => onTeamClick?.(team)}
+            >
               {/* Position Badge */}
               <div className="absolute top-4 left-4 z-10">
                 <div className="flex items-center gap-2 bg-white/90 rounded-full px-3 py-1 shadow-lg">
