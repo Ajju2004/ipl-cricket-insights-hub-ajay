@@ -80,10 +80,10 @@ const IplDashboard = () => {
 
       {/* Performance Indicator - Hide on Winners page */}
       {activeSection !== "winners" && filteredTeams.length !== teams.length && (
-        <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <div className="mb-6 p-4 bg-orange-50 border border-orange-200 rounded-lg">
           <div className="flex items-center gap-2">
-            <BarChart3 className="text-blue-600" size={20} />
-            <span className="font-semibold text-blue-800">
+            <BarChart3 className="text-orange-600" size={20} />
+            <span className="font-semibold text-orange-800">
               Showing {filteredTeams.length} of {teams.length} teams based on active filters
             </span>
             <Button 
@@ -95,7 +95,7 @@ const IplDashboard = () => {
                 winRange: [0, 14],
                 pointsRange: [0, 20]
               })}
-              className="text-blue-600 hover:text-blue-800"
+              className="text-orange-600 hover:text-orange-800"
             >
               Clear Filters
             </Button>

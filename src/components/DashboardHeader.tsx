@@ -7,19 +7,19 @@ const DashboardHeader = () => {
   return (
     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-12">
       <div className="relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 blur-3xl -z-10 rounded-full"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 to-red-500/20 blur-3xl -z-10 rounded-full"></div>
         <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-tight leading-none">
           IPL 2025
-          <span className="block text-4xl md:text-5xl bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent font-bold">
+          <span className="block text-4xl md:text-5xl bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent font-bold">
             Insights Hub
           </span>
         </h1>
-        <p className="text-xl text-indigo-200 max-w-2xl leading-relaxed font-medium">
+        <p className="text-xl text-orange-200 max-w-2xl leading-relaxed font-medium">
           Interactive analytics dashboard featuring RCB's historic maiden title victory, 
           drill-through capabilities, and comprehensive tournament insights.
         </p>
         
-        <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-indigo-300">
+        <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-orange-300">
           <CustomTooltip
             data={{
               title: "Tournament Duration",
@@ -50,13 +50,13 @@ const DashboardHeader = () => {
               ]
             }}
           >
-            <div className="flex items-center gap-2 bg-gradient-to-r from-yellow-500/20 to-orange-500/20 backdrop-blur-sm px-4 py-2 rounded-full cursor-help hover:from-yellow-500/30 hover:to-orange-500/30 transition-colors">
+            <div className="flex items-center gap-2 bg-gradient-to-r from-orange-500/20 to-red-500/20 backdrop-blur-sm px-4 py-2 rounded-full cursor-help hover:from-orange-500/30 hover:to-red-500/30 transition-colors">
               <Trophy size={16} />
               <span className="font-semibold">Champions: Royal Challengers Bengaluru</span>
             </div>
           </CustomTooltip>
           
-          <div className="flex items-center gap-2 bg-green-500/20 backdrop-blur-sm px-4 py-2 rounded-full">
+          <div className="flex items-center gap-2 bg-amber-500/20 backdrop-blur-sm px-4 py-2 rounded-full">
             <span className="text-lg">💰</span>
             <span className="font-semibold">Prize Pool: ₹20 crore</span>
           </div>
@@ -79,7 +79,7 @@ const DashboardHeader = () => {
             ]
           }}
         >
-          <Button className="flex items-center gap-3 h-12 px-6 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-2xl transition-all duration-300">
+          <Button className="flex items-center gap-3 h-12 px-6 text-base font-semibold bg-gradient-to-r from-orange-600 to-red-600 hover:from-orange-700 hover:to-red-700 shadow-2xl transition-all duration-300">
             <TrendingUp size={18} />
             Final Statistics
           </Button>
