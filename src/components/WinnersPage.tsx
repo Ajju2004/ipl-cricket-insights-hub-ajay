@@ -13,42 +13,52 @@ const WinnersPage = () => {
         
         <Card className="shadow-2xl bg-white/95 backdrop-blur-md border-white/20 overflow-hidden">
           <CardContent className="p-0">
-            {/* Hero Image Section */}
-            <div className="relative h-96 bg-gradient-to-br from-red-600 via-yellow-500 to-red-700 flex items-center justify-center">
-              <div className="absolute inset-0 bg-black/20"></div>
+            {/* Hero Image Section with RCB Championship Photo */}
+            <div className="relative h-96 overflow-hidden">
+              {/* RCB Championship Background Image */}
+              <div className="absolute inset-0">
+                <img 
+                  src="/lovable-uploads/c5073d17-7922-4a80-8add-ea9ef69441f8.png" 
+                  alt="RCB Championship Celebration" 
+                  className="w-full h-full object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
+              </div>
               
-              {/* Trophy Icon as Placeholder for Virat Kohli Image */}
-              <div className="relative z-10 text-center">
-                <div className="mb-6 flex justify-center">
-                  <div className="relative">
-                    <Trophy size={120} className="text-yellow-300 drop-shadow-2xl" />
-                    <Crown size={40} className="absolute -top-4 -right-2 text-yellow-400 animate-pulse" />
+              {/* Trophy and Text Overlay */}
+              <div className="relative z-10 h-full flex items-center justify-center">
+                <div className="text-center">
+                  <div className="mb-6 flex justify-center">
+                    <div className="relative">
+                      <Trophy size={120} className="text-yellow-300 drop-shadow-2xl" />
+                      <Crown size={40} className="absolute -top-4 -right-2 text-yellow-400 animate-pulse" />
+                    </div>
                   </div>
+                  
+                  <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight drop-shadow-lg">
+                    CHAMPIONS
+                  </h1>
+                  <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-2">
+                    Royal Challengers Bengaluru
+                  </p>
+                  <p className="text-lg text-yellow-200">
+                    IPL 2025 - Historic First Title
+                  </p>
                 </div>
-                
-                <h1 className="text-5xl md:text-6xl font-black text-white mb-4 tracking-tight drop-shadow-lg">
-                  CHAMPIONS
-                </h1>
-                <p className="text-2xl md:text-3xl font-bold text-yellow-300 mb-2">
-                  Royal Challengers Bengaluru
-                </p>
-                <p className="text-lg text-yellow-200">
-                  IPL 2025 - Historic First Title
-                </p>
-              </div>
 
-              {/* Celebration Effects */}
-              <div className="absolute top-4 left-4">
-                <Sparkles size={24} className="text-yellow-300 animate-pulse" />
-              </div>
-              <div className="absolute top-8 right-8">
-                <Star size={20} className="text-yellow-400 animate-pulse" />
-              </div>
-              <div className="absolute bottom-4 left-8">
-                <Star size={16} className="text-yellow-300 animate-pulse" />
-              </div>
-              <div className="absolute bottom-8 right-4">
-                <Sparkles size={20} className="text-yellow-400 animate-pulse" />
+                {/* Celebration Effects */}
+                <div className="absolute top-4 left-4">
+                  <Sparkles size={24} className="text-yellow-300 animate-pulse" />
+                </div>
+                <div className="absolute top-8 right-8">
+                  <Star size={20} className="text-yellow-400 animate-pulse" />
+                </div>
+                <div className="absolute bottom-4 left-8">
+                  <Star size={16} className="text-yellow-300 animate-pulse" />
+                </div>
+                <div className="absolute bottom-8 right-4">
+                  <Sparkles size={20} className="text-yellow-400 animate-pulse" />
+                </div>
               </div>
             </div>
 
