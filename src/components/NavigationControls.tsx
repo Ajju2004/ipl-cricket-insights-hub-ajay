@@ -1,68 +1,69 @@
-
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Home, 
-  Users, 
-  Trophy, 
-  Calendar, 
-  MapPin, 
-  Gavel, 
-  Award, 
-  BarChart3, 
-  Crown,
-  Sparkles,
-  FileText
-} from "lucide-react";
+import { Home, Trophy, Users, User, Calendar, MapPin, DollarSign, Award, TrendingUp, MessageSquare, BarChart3 } from "lucide-react";
+import CustomTooltip from "./CustomTooltip";
+import { cn } from "@/lib/utils";
 
 interface NavigationControlsProps {
   activeSection: string;
-  onSectionChange: (section: string) => void;
+  onSectionChange: (sectionId: string) => void;
 }
 
 const NavigationControls = ({ activeSection, onSectionChange }: NavigationControlsProps) => {
   const sections = [
     { id: "overview", label: "Overview", icon: Home },
-    { id: "qa", label: "Ask Data", icon: Sparkles, badge: "Enhanced" },
-    { id: "questionbank", label: "Question Bank", icon: FileText, badge: "50 Q&A" },
-    { id: "winners", label: "Winners", icon: Crown },
+    { id: "3d-analytics", label: "3D Analytics", icon: BarChart3 },
+    { id: "winners", label: "Champions", icon: Trophy },
     { id: "teams", label: "Teams", icon: Users },
-    { id: "players", label: "Players", icon: Trophy },
+    { id: "players", label: "Players", icon: User },
     { id: "matches", label: "Matches", icon: Calendar },
     { id: "venues", label: "Venues", icon: MapPin },
-    { id: "auction", label: "Auction", icon: Gavel },
+    { id: "auction", label: "Auction", icon: DollarSign },
     { id: "awards", label: "Awards", icon: Award },
-    { id: "analytics", label: "Analytics", icon: BarChart3 },
+    { id: "analytics", label: "Analytics", icon: TrendingUp },
+    { id: "qa", label: "Q&A", icon: MessageSquare },
   ];
 
   return (
-    <div className="bg-white/95 backdrop-blur-md rounded-2xl p-2 shadow-2xl border border-white/20 sticky top-4 z-40">
-      <div className="flex flex-wrap gap-2">
-        {sections.map((section) => {
-          const Icon = section.icon;
-          return (
-            <Button
-              key={section.id}
-              variant={activeSection === section.id ? "default" : "ghost"}
-              size="sm"
-              onClick={() => onSectionChange(section.id)}
-              className={`flex items-center gap-2 transition-all duration-200 ${
-                activeSection === section.id
-                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg"
-                  : "hover:bg-gray-100 text-gray-700"
-              }`}
-            >
-              <Icon size={16} />
-              {section.label}
-              {section.badge && (
-                <Badge variant="secondary" className="ml-1 text-xs px-1 py-0">
-                  {section.badge}
-                </Badge>
-              )}
-            </Button>
-          );
-        })}
-      </div>
+    <div className="sticky top-6 z-40">
+      <Card className="bg-white/20 backdrop-blur-xl border-white/30 shadow-2xl">
+        <CardContent className="p-4">
+          <div className="flex flex-wrap gap-2 justify-center">
+            {sections.map((section) => {
+              const Icon = section.icon;
+              const isActive = activeSection === section.id;
+              
+              return (
+                <CustomTooltip
+                  key={section.id}
+                  data={{
+                    title: section.label,
+                    value: section.id === "3d-analytics" ? "Interactive 3D Dashboard" : `Navigate to ${section.label}`,
+                    description: section.id === "3d-analytics" 
+                      ? "Experience immersive 3D visualizations with Power BI specifications"
+                      : `View detailed ${section.label.toLowerCase()} information and statistics`,
+                  }}
+                >
+                  <Button
+                    variant={isActive ? "default" : "ghost"}
+                    size="sm"
+                    onClick={() => onSectionChange(section.id)}
+                    className={cn(
+                      "transition-all duration-300 text-white border-white/20",
+                      isActive 
+                        ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg scale-105" 
+                        : "hover:bg-white/20 hover:scale-105"
+                    )}
+                  >
+                    <Icon size={16} className="mr-2" />
+                    {section.label}
+                  </Button>
+                </CustomTooltip>
+              );
+            })}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };

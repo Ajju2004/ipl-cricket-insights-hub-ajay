@@ -10,6 +10,7 @@ import AwardsShowcase from "./AwardsShowcase";
 import WinnersPage from "./WinnersPage";
 import NaturalLanguageQuery from "./NaturalLanguageQuery";
 import QuestionBank from "./QuestionBank";
+import Dashboard3D from "./Dashboard3D";
 
 interface SectionRendererProps {
   activeSection: string;
@@ -19,6 +20,8 @@ interface SectionRendererProps {
 
 const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionRendererProps) => {
   switch (activeSection) {
+    case "3d-analytics":
+      return <Dashboard3D />;
     case "winners":
       return <WinnersPage />;
     case "teams":
@@ -47,7 +50,13 @@ const SectionRenderer = ({ activeSection, filteredTeams, onDrillDown }: SectionR
     default:
       return (
         <>
-          <DashboardStats />
+          {/* Enhanced 3D Dashboard */}
+          <Dashboard3D />
+          
+          <div className="mt-16">
+            <DashboardStats />
+          </div>
+          
           <div className="mt-16 space-y-12">
             <NaturalLanguageQuery />
             <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
