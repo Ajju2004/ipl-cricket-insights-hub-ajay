@@ -100,10 +100,10 @@ const DashboardHeader = () => {
           </div>
         </div>
 
-        {/* Natural Language Query in Top Background Area */}
-        <div className="relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-2xl -z-10 rounded-3xl"></div>
-          <div className="bg-white/15 backdrop-blur-md rounded-3xl p-8 border border-white/30 shadow-2xl">
+        {/* Smaller Natural Language Query Box */}
+        <div className="relative max-w-3xl mx-auto">
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-xl -z-10 rounded-2xl"></div>
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-lg">
             <NaturalLanguageQuery />
           </div>
         </div>
