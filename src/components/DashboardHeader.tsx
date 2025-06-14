@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { Download, TrendingUp, Calendar, Trophy } from "lucide-react";
 import CustomTooltip from "./CustomTooltip";
@@ -18,7 +17,7 @@ const DashboardHeader = () => {
       </div>
 
       <div className="relative z-20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pt-8">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 pt-16">
           <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl -z-10 rounded-full"></div>
             <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-tight leading-none drop-shadow-2xl">
@@ -100,10 +99,10 @@ const DashboardHeader = () => {
           </div>
         </div>
 
-        {/* Smaller Natural Language Query Box */}
-        <div className="relative max-w-3xl mx-auto">
+        {/* Full Width Natural Language Query Box with Reduced Height */}
+        <div className="relative w-full">
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-xl -z-10 rounded-2xl"></div>
-          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-lg">
+          <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-lg">
             <NaturalLanguageQuery />
           </div>
         </div>
