@@ -1,12 +1,10 @@
 
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Text, Sphere } from '@react-three/drei';
-import { Suspense, useEffect, useRef } from 'react';
+import { Suspense } from 'react';
 import AnimatedChart3D from './AnimatedChart3D';
 import ServerTower from './ServerTower';
 import DataCylinder from './DataCylinder';
-import NetworkNode from './NetworkNode';
-import ProcessingCone from './ProcessingCone';
 
 interface KPIMetric {
   label: string;
@@ -21,38 +19,9 @@ interface Dashboard3DSceneProps {
 }
 
 const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const handleContextLost = (event: Event) => {
-      console.warn('WebGL context lost:', event);
-      event.preventDefault();
-    };
-
-    const handleContextRestored = (event: Event) => {
-      console.log('WebGL context restored:', event);
-    };
-
-    const canvas = canvasRef.current;
-    if (canvas) {
-      canvas.addEventListener('webglcontextlost', handleContextLost);
-      canvas.addEventListener('webglcontextrestored', handleContextRestored);
-
-      return () => {
-        canvas.removeEventListener('webglcontextlost', handleContextLost);
-        canvas.removeEventListener('webglcontextrestored', handleContextRestored);
-      };
-    }
-  }, []);
-
   return (
     <Canvas 
-      ref={canvasRef}
       camera={{ position: [6, 6, 6], fov: 60 }}
-      onError={(error) => {
-        console.error('Canvas error:', error);
-        throw new Error('WebGL rendering failed');
-      }}
       gl={{ 
         antialias: false,
         alpha: false,
@@ -62,7 +31,7 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
       dpr={Math.min(window.devicePixelRatio, 2)}
     >
       <Suspense fallback={null}>
-        {/* Simplified Lighting Setup for better performance */}
+        {/* Simplified Lighting */}
         <ambientLight intensity={0.6} />
         <directionalLight position={[0, 8, 5]} intensity={0.8} color="#4A90E2" />
 
@@ -76,12 +45,11 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
           />
         ))}
 
-        {/* Reduced Infrastructure Models for better performance */}
+        {/* Simplified Infrastructure Models */}
         <ServerTower position={[4, 0, -2]} />
         <DataCylinder position={[-4, 1, 2]} color="#3498DB" />
-        <NetworkNode position={[2, 2, 2]} />
 
-        {/* Reduced Data Flow Spheres */}
+        {/* Single Data Flow Sphere */}
         <Sphere position={[0, 4, 2]} args={[0.25]}>
           <meshStandardMaterial color="#00CED1" emissive="#00CED1" emissiveIntensity={0.3} />
         </Sphere>
@@ -137,7 +105,7 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
           Engagement
         </Text>
 
-        {/* Optimized Controls */}
+        {/* Simplified Controls */}
         <OrbitControls 
           enableZoom={true} 
           enablePan={false} 

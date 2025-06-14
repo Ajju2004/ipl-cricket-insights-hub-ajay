@@ -20,8 +20,16 @@ const NetworkNode = ({ position }: NetworkNodeProps) => {
   });
 
   return (
-    <Torus ref={meshRef} position={position} args={[0.4, 0.1, 8, 16]}>
-      <meshStandardMaterial color="#9B59B6" emissive="#9B59B6" emissiveIntensity={0.2} />
+    <Torus 
+      ref={meshRef} 
+      position={position} 
+      args={[0.4, 0.1, 8, 16]}
+    >
+      <meshStandardMaterial 
+        color="#9B59B6" 
+        emissive="#9B59B6" 
+        emissiveIntensity={0.2} 
+      />
     </Torus>
   );
 };

@@ -40,8 +40,16 @@ const AnimatedChart3D = ({ position, color, height }: AnimatedChart3DProps) => {
   }, []);
 
   return (
-    <Box ref={meshRef} position={position} args={[0.6, height, 0.6]}>
-      <meshStandardMaterial color={color} metalness={0.3} roughness={0.4} />
+    <Box 
+      ref={meshRef} 
+      position={position} 
+      args={[0.6, height, 0.6]}
+    >
+      <meshStandardMaterial 
+        color={color} 
+        metalness={0.3} 
+        roughness={0.4} 
+      />
     </Box>
   );
 };
