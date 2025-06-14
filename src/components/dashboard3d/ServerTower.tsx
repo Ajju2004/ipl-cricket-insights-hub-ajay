@@ -2,22 +2,23 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Box, Sphere } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface ServerTowerProps {
   position: [number, number, number];
 }
 
 const ServerTower = ({ position }: ServerTowerProps) => {
-  const meshRef = useRef<any>();
+  const groupRef = useRef<THREE.Group>(null);
   
   useFrame(() => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y += 0.005;
+    if (groupRef.current) {
+      groupRef.current.rotation.y += 0.005;
     }
   });
 
   return (
-    <group ref={meshRef} position={position}>
+    <group ref={groupRef} position={position}>
       <Box args={[0.4, 1.5, 0.4]}>
         <meshStandardMaterial color="#2C3E50" metalness={0.8} roughness={0.2} />
       </Box>

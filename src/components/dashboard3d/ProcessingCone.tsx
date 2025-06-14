@@ -2,13 +2,14 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Cone } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface ProcessingConeProps {
   position: [number, number, number];
 }
 
 const ProcessingCone = ({ position }: ProcessingConeProps) => {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {

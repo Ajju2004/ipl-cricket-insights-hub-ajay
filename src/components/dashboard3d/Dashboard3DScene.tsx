@@ -22,7 +22,10 @@ interface Dashboard3DSceneProps {
 
 const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
   return (
-    <Canvas camera={{ position: [6, 6, 6], fov: 60 }}>
+    <Canvas 
+      camera={{ position: [6, 6, 6], fov: 60 }}
+      onError={(error) => console.error('Canvas error:', error)}
+    >
       <Suspense fallback={null}>
         {/* Enhanced Lighting Setup */}
         <ambientLight intensity={0.4} />
@@ -31,9 +34,9 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
         <spotLight position={[-5, 5, 0]} intensity={0.8} color="#9B59B6" />
 
         {/* Performance Chart Bars */}
-        {kpiMetrics.map((metric, index) => (
+        {kpiMetrics && kpiMetrics.length > 0 && kpiMetrics.map((metric, index) => (
           <AnimatedChart3D 
-            key={index}
+            key={`chart-${index}`}
             position={[-3 + index * 1.5, 0, 0]} 
             color={metric.color} 
             height={metric.height} 
@@ -48,13 +51,13 @@ const Dashboard3DScene = ({ kpiMetrics }: Dashboard3DSceneProps) => {
         <ProcessingCone position={[0, 2, -3]} />
 
         {/* Data Flow Spheres */}
-        <Sphere position={[-5, 3, 0]} args={[0.2]} scale={1.5}>
+        <Sphere position={[-5, 3, 0]} args={[0.2]}>
           <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.4} />
         </Sphere>
-        <Sphere position={[5, 3, 0]} args={[0.2]} scale={1.2}>
+        <Sphere position={[5, 3, 0]} args={[0.2]}>
           <meshStandardMaterial color="#FF69B4" emissive="#FF69B4" emissiveIntensity={0.3} />
         </Sphere>
-        <Sphere position={[0, 4, 2]} args={[0.25]} scale={1.8}>
+        <Sphere position={[0, 4, 2]} args={[0.25]}>
           <meshStandardMaterial color="#00CED1" emissive="#00CED1" emissiveIntensity={0.5} />
         </Sphere>
 

@@ -2,13 +2,14 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Torus } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface NetworkNodeProps {
   position: [number, number, number];
 }
 
 const NetworkNode = ({ position }: NetworkNodeProps) => {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {

@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Cylinder } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface DataCylinderProps {
   position: [number, number, number];
@@ -9,12 +10,13 @@ interface DataCylinderProps {
 }
 
 const DataCylinder = ({ position, color }: DataCylinderProps) => {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
       meshRef.current.rotation.x += 0.01;
-      meshRef.current.scale.y = 1 + Math.sin(state.clock.elapsedTime * 3) * 0.1;
+      const scale = 1 + Math.sin(state.clock.elapsedTime * 3) * 0.1;
+      meshRef.current.scale.setY(scale);
     }
   });
 

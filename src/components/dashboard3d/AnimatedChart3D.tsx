@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Box } from '@react-three/drei';
+import * as THREE from 'three';
 
 interface AnimatedChart3DProps {
   position: [number, number, number];
@@ -10,7 +11,7 @@ interface AnimatedChart3DProps {
 }
 
 const AnimatedChart3D = ({ position, color, height }: AnimatedChart3DProps) => {
-  const meshRef = useRef<any>();
+  const meshRef = useRef<THREE.Mesh>(null);
   
   useFrame((state) => {
     if (meshRef.current) {
