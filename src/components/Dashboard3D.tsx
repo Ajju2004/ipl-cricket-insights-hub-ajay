@@ -1,6 +1,6 @@
 
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, Text, Box, Sphere, Cylinder } from '@react-three/drei';
+import { OrbitControls, Text, Box, Sphere } from '@react-three/drei';
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { TrendingUp, BarChart3, PieChart, Activity } from "lucide-react";
@@ -24,16 +24,16 @@ const Dashboard3D = () => {
     dataVolume: "850GB"
   };
 
-  // 3D Chart Component
+  // 3D Chart Component with proper prop handling
   const Chart3D = ({ position, color, height }: { position: [number, number, number], color: string, height: number }) => (
     <Box position={position} args={[0.5, height, 0.5]}>
       <meshStandardMaterial color={color} />
     </Box>
   );
 
-  // 3D KPI Sphere
+  // 3D KPI Sphere with proper prop handling
   const KPISphere = ({ position, color, scale }: { position: [number, number, number], color: string, scale: number }) => (
-    <Sphere position={position} args={[0.3 * scale]} scale={scale}>
+    <Sphere position={position} args={[0.3]} scale={[scale, scale, scale]}>
       <meshStandardMaterial color={color} emissive={color} emissiveIntensity={0.2} />
     </Sphere>
   );
