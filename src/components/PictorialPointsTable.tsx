@@ -1,5 +1,6 @@
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { teams } from "@/data/iplData";
 import { Trophy, TrendingUp, TrendingDown, Target, Award, Users } from "lucide-react";
 
@@ -100,9 +101,16 @@ const PictorialPointsTable = () => {
 
               <CardHeader className="pb-2">
                 <div className="flex items-center justify-center mb-4">
-                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center text-4xl shadow-lg">
-                    {team.logo}
-                  </div>
+                  <Avatar className="w-20 h-20 ring-4 ring-white shadow-lg">
+                    <AvatarImage 
+                      src={team.logoUrl} 
+                      alt={`${team.name} logo`}
+                      className="object-contain p-1"
+                    />
+                    <AvatarFallback className="text-2xl bg-gradient-to-br from-blue-500 to-purple-500 text-white">
+                      {team.logo}
+                    </AvatarFallback>
+                  </Avatar>
                 </div>
                 <CardTitle className="text-center text-xl font-bold">{team.name}</CardTitle>
               </CardHeader>

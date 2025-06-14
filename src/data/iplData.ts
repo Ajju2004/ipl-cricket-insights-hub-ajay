@@ -5,6 +5,7 @@ export interface Team {
   shortName: string;
   color: string;
   logo: string;
+  logoUrl?: string; // Add optional logo URL for actual team logos
   wins: number;
   losses: number;
   points: number;
@@ -71,6 +72,7 @@ export const teams: Team[] = [
     shortName: "PBKS", 
     color: "#DD1F2D", 
     logo: "👑", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Punjab-Kings-Logo.png",
     wins: 10, 
     losses: 4, 
     points: 20, 
@@ -87,6 +89,7 @@ export const teams: Team[] = [
     shortName: "RCB", 
     color: "#EC1C24", 
     logo: "🏆", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Royal-Challengers-Bangalore-Logo.png",
     wins: 9, 
     losses: 5, 
     points: 18, 
@@ -103,6 +106,7 @@ export const teams: Team[] = [
     shortName: "GT", 
     color: "#1B2951", 
     logo: "⚡", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2022/04/Gujarat-Titans-Logo.png",
     wins: 8, 
     losses: 6, 
     points: 16, 
@@ -119,6 +123,7 @@ export const teams: Team[] = [
     shortName: "MI", 
     color: "#004BA0", 
     logo: "🔵", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Mumbai-Indians-Logo.png",
     wins: 8, 
     losses: 6, 
     points: 16, 
@@ -135,6 +140,7 @@ export const teams: Team[] = [
     shortName: "CSK", 
     color: "#FFFF00", 
     logo: "🦁", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Chennai-Super-Kings-Logo.png",
     wins: 7, 
     losses: 7, 
     points: 14, 
@@ -151,6 +157,7 @@ export const teams: Team[] = [
     shortName: "LSG", 
     color: "#00A8CC", 
     logo: "🌟", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2022/04/Lucknow-Super-Giants-Logo.png",
     wins: 7, 
     losses: 7, 
     points: 14, 
@@ -167,6 +174,7 @@ export const teams: Team[] = [
     shortName: "KKR", 
     color: "#3A225D", 
     logo: "⚫", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Kolkata-Knight-Riders-Logo.png",
     wins: 6, 
     losses: 8, 
     points: 12, 
@@ -183,6 +191,7 @@ export const teams: Team[] = [
     shortName: "DC", 
     color: "#17479E", 
     logo: "🔷", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Delhi-Capitals-Logo.png",
     wins: 6, 
     losses: 8, 
     points: 12, 
@@ -199,6 +208,7 @@ export const teams: Team[] = [
     shortName: "RR", 
     color: "#EA1A85", 
     logo: "👑", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Rajasthan-Royals-Logo.png",
     wins: 5, 
     losses: 9, 
     points: 10, 
@@ -215,6 +225,7 @@ export const teams: Team[] = [
     shortName: "SRH", 
     color: "#FF822A", 
     logo: "🧡", 
+    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Sunrisers-Hyderabad-Logo.png",
     wins: 4, 
     losses: 10, 
     points: 8, 
