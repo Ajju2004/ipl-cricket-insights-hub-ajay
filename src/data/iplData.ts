@@ -1,4 +1,3 @@
-
 export interface Team {
   id: string;
   name: string;
@@ -140,7 +139,7 @@ export const teams: Team[] = [
     shortName: "CSK", 
     color: "#FFFF00", 
     logo: "🦁", 
-    logoUrl: "https://logos-world.net/wp-content/uploads/2020/06/Chennai-Super-Kings-Logo.png",
+    logoUrl: "/lovable-uploads/fec15640-7ac8-4257-a456-39f394b60261.png",
     wins: 7, 
     losses: 7, 
     points: 14, 
@@ -486,4 +485,3 @@ export const auctionHighlights: AuctionData[] = [
   { player: "Kagiso Rabada", team: "GT", price: 10.75 },
   { player: "Vaibhav Suryavanshi", team: "RR", price: 1.1, age: 13 },
 ];
-
