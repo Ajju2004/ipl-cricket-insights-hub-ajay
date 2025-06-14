@@ -6,12 +6,12 @@ import NaturalLanguageQuery from "./NaturalLanguageQuery";
 
 const DashboardHeader = () => {
   return (
-    <div className="mb-12 relative mt-16">
-      {/* RCB Championship Background Image - positioned lower */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl mt-12">
+    <div className="mb-12 relative">
+      {/* New RCB Championship Background Image - can touch top */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 z-10"></div>
         <img 
-          src="/lovable-uploads/c5073d17-7922-4a80-8add-ea9ef69441f8.png" 
+          src="/lovable-uploads/6165ce02-fe6b-4e58-bbee-5296975210c9.png" 
           alt="RCB Championship Celebration" 
           className="w-full h-full object-cover object-center opacity-60"
         />
