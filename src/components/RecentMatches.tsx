@@ -1,4 +1,3 @@
-
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { recentMatches } from "@/data/iplData";
 import { Calendar, MapPin, Trophy, Star } from "lucide-react";
@@ -28,7 +27,7 @@ const RecentMatches = () => {
                   </span>
                 )}
                 {match.isHighScoring && (
-                  <Star size={14} className="text-orange-500" title="High Scoring Match" />
+                  <Star size={14} className="text-orange-500" />
                 )}
               </div>
               <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
@@ -68,4 +67,3 @@ const RecentMatches = () => {
 };
 
 export default RecentMatches;
-
