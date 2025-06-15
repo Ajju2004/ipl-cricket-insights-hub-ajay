@@ -1,108 +1,112 @@
+
 import { Button } from "@/components/ui/button";
-import { Download, TrendingUp, Calendar, Trophy } from "lucide-react";
+import { Download, TrendingUp, Calendar, Trophy, DollarSign } from "lucide-react";
 import CustomTooltip from "./CustomTooltip";
 import NaturalLanguageQuery from "./NaturalLanguageQuery";
 
 const DashboardHeader = () => {
   return (
-    <div className="mb-12 relative">
-      {/* New RCB Championship Background Image - can touch top */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-3xl">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-gray-900/30 to-gray-900/60 z-10"></div>
-        <img 
-          src="/lovable-uploads/62c360cd-fad2-4628-baae-a12aa2cc5def.png" 
-          alt="RCB Championship Celebration" 
-          className="w-full h-full object-cover object-center opacity-60"
-        />
+    <div className="mb-8 relative">
+      {/* Modern Dark Background with Subtle Gradient */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-purple-900/10"></div>
       </div>
 
       <div className="relative z-20">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6 pt-8">
-          <div className="relative">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-purple-500/10 blur-3xl -z-10 rounded-full"></div>
-            <h1 className="text-6xl md:text-7xl font-black text-white mb-4 tracking-tight leading-none drop-shadow-2xl">
-              IPL 2025
-              <span className="block text-4xl md:text-5xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-bold drop-shadow-lg">
-                Insights Hub
-              </span>
-            </h1>
-            <p className="text-xl text-slate-200 max-w-2xl leading-relaxed font-medium drop-shadow-lg">
-              Interactive analytics dashboard featuring RCB's historic title victory, 
-              drill-through capabilities, and comprehensive tournament insights.
-            </p>
-            
-            <div className="mt-6 flex flex-wrap items-center gap-6 text-sm text-slate-400">
-              <CustomTooltip
-                data={{
-                  title: "Tournament Duration",
-                  value: "74 Days",
-                  description: "Extended season due to suspension and playoffs",
-                  additionalInfo: [
-                    { label: "League Matches", value: "70" },
-                    { label: "Playoff Matches", value: "4" },
-                    { label: "Venues Used", value: "13" }
-                  ]
-                }}
-              >
-                <div className="flex items-center gap-2 bg-slate-800/60 backdrop-blur-sm px-4 py-2 rounded-full cursor-help hover:bg-slate-700/60 transition-colors border border-slate-600/30">
-                  <Calendar size={16} />
-                  <span className="font-semibold text-slate-200">March 22 - June 3, 2025</span>
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6 p-8">
+          {/* Left Section - Title and Stats */}
+          <div className="flex-1">
+            <div className="mb-6">
+              <h1 className="text-4xl lg:text-5xl font-bold text-white mb-2 tracking-tight">
+                IPL Analytics Hub
+              </h1>
+              <p className="text-lg text-slate-300 font-medium">
+                Personal Finance Tracker Style Dashboard
+              </p>
+              <p className="text-sm text-slate-400 mt-1">
+                Sunday, June 3, 2025
+              </p>
+            </div>
+
+            {/* Available Balance Style Section */}
+            <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl p-6 mb-6 max-w-md">
+              <h2 className="text-white text-lg font-semibold mb-2">Tournament Revenue</h2>
+              <div className="text-white text-4xl font-bold">₹5,230Cr</div>
+            </div>
+
+            {/* Quick Stats Cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                    <Trophy size={16} className="text-white" />
+                  </div>
+                  <span className="text-slate-400 text-sm">Matches</span>
                 </div>
-              </CustomTooltip>
-              
-              <CustomTooltip
-                data={{
-                  title: "Championship Details",
-                  value: "RCB First Title",
-                  description: "Royal Challengers Bengaluru finally won their first IPL title",
-                  additionalInfo: [
-                    { label: "Final Margin", value: "6 runs" },
-                    { label: "Prize Money", value: "₹20 crore" },
-                    { label: "Previous Finals", value: "3 losses" }
-                  ]
-                }}
-              >
-                <div className="flex items-center gap-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 backdrop-blur-sm px-4 py-2 rounded-full cursor-help hover:from-blue-500/30 hover:to-purple-500/30 transition-colors border border-blue-500/20">
-                  <Trophy size={16} />
-                  <span className="font-semibold text-blue-200">Champions: Royal Challengers Bengaluru</span>
+                <div className="text-white text-xl font-bold">74</div>
+              </div>
+
+              <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                    <TrendingUp size={16} className="text-white" />
+                  </div>
+                  <span className="text-slate-400 text-sm">Teams</span>
                 </div>
-              </CustomTooltip>
-              
-              <div className="flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm px-4 py-2 rounded-full border border-emerald-500/20">
-                <span className="text-lg">💰</span>
-                <span className="font-semibold text-emerald-200">Prize Pool: ₹20 crore</span>
+                <div className="text-white text-xl font-bold">10</div>
+              </div>
+
+              <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                    <Calendar size={16} className="text-white" />
+                  </div>
+                  <span className="text-slate-400 text-sm">Venues</span>
+                </div>
+                <div className="text-white text-xl font-bold">13</div>
+              </div>
+
+              <div className="bg-slate-800/60 backdrop-blur-sm rounded-xl p-4 border border-slate-700/50">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-8 h-8 bg-yellow-500 rounded-lg flex items-center justify-center">
+                    <DollarSign size={16} className="text-white" />
+                  </div>
+                  <span className="text-slate-400 text-sm">Prize</span>
+                </div>
+                <div className="text-white text-xl font-bold">₹20Cr</div>
               </div>
             </div>
           </div>
-          <div className="mt-8 md:mt-0 flex flex-col gap-4">
-            <Button variant="secondary" className="shadow-2xl flex items-center gap-3 h-12 px-6 text-base font-semibold bg-slate-800/80 backdrop-blur-md border-slate-600/30 hover:bg-slate-700/80 transition-all duration-300 text-slate-200">
-              <Download size={18} />
-              Export Analytics
-            </Button>
-            <CustomTooltip
-              data={{
-                title: "Final Statistics",
-                value: "Complete Dataset",
-                description: "Access comprehensive tournament statistics and analytics",
-                additionalInfo: [
-                  { label: "Data Points", value: "5000+" },
-                  { label: "Updated", value: "Live" },
-                  { label: "Coverage", value: "100%" }
-                ]
-              }}
-            >
-              <Button className="flex items-center gap-3 h-12 px-6 text-base font-semibold bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-2xl transition-all duration-300">
-                <TrendingUp size={18} />
-                Final Statistics
+
+          {/* Right Section - User Profile & Actions */}
+          <div className="mt-8 lg:mt-0 lg:ml-8 flex flex-col items-end">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="text-right">
+                <div className="text-white font-semibold">IPL Analytics</div>
+                <div className="text-slate-400 text-sm">Data Analyst</div>
+              </div>
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                <span className="text-white font-bold">IA</span>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <Button variant="secondary" className="bg-slate-700/80 backdrop-blur-md border-slate-600/50 hover:bg-slate-600/80 text-slate-200">
+                <Download size={16} />
+                Export Data
               </Button>
-            </CustomTooltip>
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                <TrendingUp size={16} />
+                View Reports
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Full Width Natural Language Query Box with Reduced Opacity */}
-        <div className="relative w-full">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 to-purple-500/5 blur-xl -z-10 rounded-2xl"></div>
-          <div className="bg-white/5 backdrop-blur-md rounded-2xl p-3 border border-white/20 shadow-lg">
+        {/* Modern Query Interface */}
+        <div className="mx-8 mb-4">
+          <div className="bg-slate-800/40 backdrop-blur-md rounded-xl p-4 border border-slate-700/30">
             <NaturalLanguageQuery />
           </div>
         </div>

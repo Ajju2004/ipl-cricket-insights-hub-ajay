@@ -3,127 +3,112 @@ import { Card, CardContent } from "@/components/ui/card";
 import { teams, topPlayers, recentMatches, venues } from "@/data/iplData";
 
 const DashboardStats = () => {
-  const totalMatches = 74; // IPL 2025 total matches
+  const totalMatches = 74;
   const totalPlayers = topPlayers.length;
-  const totalVenues = 13; // IPL 2025 venues
+  const totalVenues = 13;
   const totalTeams = teams.length;
-  const championPrizeMoney = 20; // RCB won ₹20 crore
+  const championPrizeMoney = 20;
   const topScorer = Math.max(...topPlayers.map(p => p.runs));
   const topWicketTaker = Math.max(...topPlayers.map(p => p.wickets));
 
-  const stats = [
+  const primaryStats = [
     { 
-      label: "Total Matches", 
-      value: totalMatches, 
-      icon: "⚾", 
-      color: "from-blue-500 to-blue-600",
-      bgGradient: "from-blue-500/10 to-blue-600/10"
-    },
-    { 
-      label: "Teams", 
-      value: totalTeams, 
-      icon: "🏏", 
-      color: "from-green-500 to-green-600",
-      bgGradient: "from-green-500/10 to-green-600/10"
-    },
-    { 
-      label: "Venues", 
-      value: totalVenues, 
-      icon: "🏟️", 
-      color: "from-purple-500 to-purple-600",
-      bgGradient: "from-purple-500/10 to-purple-600/10"
-    },
-    { 
-      label: "Champions", 
-      value: "RCB", 
-      icon: "🏆", 
-      color: "from-yellow-500 to-yellow-600",
-      bgGradient: "from-yellow-500/10 to-yellow-600/10"
-    },
-    { 
-      label: "Prize Money", 
-      value: `₹${championPrizeMoney}cr`, 
+      label: "Total Revenue", 
+      value: "₹5,230Cr", 
+      change: "+12.5%",
       icon: "💰", 
       color: "from-emerald-500 to-emerald-600",
-      bgGradient: "from-emerald-500/10 to-emerald-600/10"
+      bgColor: "bg-emerald-500"
     },
     { 
-      label: "Top Score", 
-      value: topScorer, 
-      icon: "🔥", 
-      color: "from-orange-500 to-orange-600",
-      bgGradient: "from-orange-500/10 to-orange-600/10"
+      label: "Match Attendance", 
+      value: "2.8M", 
+      change: "+8.2%",
+      icon: "👥", 
+      color: "from-blue-500 to-blue-600",
+      bgColor: "bg-blue-500"
     },
     { 
-      label: "Most Wickets", 
-      value: topWicketTaker, 
-      icon: "🎯", 
-      color: "from-red-500 to-red-600",
-      bgGradient: "from-red-500/10 to-red-600/10"
-    },
-    { 
-      label: "Season", 
-      value: "2025", 
-      icon: "📅", 
-      color: "from-indigo-500 to-indigo-600",
-      bgGradient: "from-indigo-500/10 to-indigo-600/10"
+      label: "Viewership", 
+      value: "462M", 
+      change: "+15.3%",
+      icon: "📺", 
+      color: "from-purple-500 to-purple-600",
+      bgColor: "bg-purple-500"
     },
   ];
 
-  return (
-    <div>
-      {/* Enhanced Tournament Header */}
-      <div className="text-center mb-12">
-        <div className="relative inline-block">
-          <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/30 to-orange-500/30 blur-2xl rounded-full"></div>
-          <div className="relative bg-white/10 backdrop-blur-md rounded-2xl px-8 py-4 mb-6 border border-white/20">
-            <span className="text-white font-black text-2xl tracking-wide">
-              🏆 IPL 2025 SEASON COMPLETE 🏆
-            </span>
-          </div>
-        </div>
-        <div className="text-indigo-200 text-lg font-medium max-w-4xl mx-auto leading-relaxed">
-          March 22 - June 3, 2025 • Extended Season Due to Suspension • 74 Matches Across 13 Premier Venues
-        </div>
-      </div>
+  const secondaryStats = [
+    { label: "Housing", value: "₹320Cr", icon: "🏟️", color: "bg-purple-500" },
+    { label: "Broadcasting", value: "₹2,420Cr", icon: "📡", color: "bg-pink-500" },
+    { label: "Sponsorship", value: "₹2,040Cr", icon: "🤝", color: "bg-orange-500" },
+  ];
 
-      {/* Enhanced Stats Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6">
-        {stats.map((stat, index) => (
-          <Card
-            key={stat.label}
-            className="group bg-white/10 border-white/20 shadow-2xl backdrop-blur-md hover:bg-white/15 transition-all duration-500 hover:scale-105 hover:-translate-y-2 relative overflow-hidden"
-          >
-            {/* Gradient Background */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${stat.bgGradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-            
-            {/* Animated Border */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 animate-pulse"></div>
-            
-            <CardContent className="py-6 text-center relative z-10">
-              {/* Enhanced Icon */}
-              <div className="text-3xl mb-3 transform group-hover:scale-110 transition-transform duration-300 filter drop-shadow-lg">
-                {stat.icon}
+  const performanceStats = [
+    { label: "Total Matches", value: totalMatches, category: "Tournament" },
+    { label: "Teams", value: totalTeams, category: "Participants" },
+    { label: "Venues", value: totalVenues, category: "Infrastructure" },
+    { label: "Top Score", value: topScorer, category: "Performance" },
+    { label: "Most Wickets", value: topWicketTaker, category: "Performance" },
+    { label: "Prize Money", value: `₹${championPrizeMoney}Cr`, category: "Financial" },
+  ];
+
+  return (
+    <div className="space-y-8">
+      {/* Primary Revenue Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {primaryStats.map((stat, index) => (
+          <Card key={stat.label} className="bg-slate-800/60 border-slate-700/50 backdrop-blur-sm hover:bg-slate-800/80 transition-all duration-300">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-4">
+                <div className={`w-12 h-12 ${stat.bgColor} rounded-xl flex items-center justify-center text-2xl`}>
+                  {stat.icon}
+                </div>
+                <span className="text-emerald-400 text-sm font-semibold bg-emerald-500/10 px-2 py-1 rounded-full">
+                  {stat.change}
+                </span>
               </div>
-              
-              {/* Enhanced Value */}
-              <div className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight leading-none">
-                {stat.value}
-              </div>
-              
-              {/* Enhanced Label */}
-              <div className="text-xs text-indigo-200 uppercase tracking-widest font-bold leading-tight">
-                {stat.label}
-              </div>
-              
-              {/* Highlight Effect */}
-              {index < 4 && (
-                <div className="absolute top-2 right-2 w-2 h-2 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
-              )}
+              <div className="text-slate-400 text-sm mb-1">{stat.label}</div>
+              <div className="text-white text-2xl font-bold">{stat.value}</div>
             </CardContent>
           </Card>
         ))}
       </div>
+
+      {/* Secondary Category Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {secondaryStats.map((stat, index) => (
+          <Card key={stat.label} className="bg-slate-800/40 border-slate-700/30 backdrop-blur-sm">
+            <CardContent className="p-6">
+              <div className="flex items-center gap-4">
+                <div className={`w-10 h-10 ${stat.color} rounded-lg flex items-center justify-center text-lg`}>
+                  {stat.icon}
+                </div>
+                <div>
+                  <div className="text-slate-400 text-sm">{stat.label}</div>
+                  <div className="text-white text-xl font-bold">{stat.value}</div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+
+      {/* Detailed Performance Metrics */}
+      <Card className="bg-slate-800/40 border-slate-700/30 backdrop-blur-sm">
+        <CardContent className="p-6">
+          <h3 className="text-white text-lg font-semibold mb-6">Tournament Overview</h3>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {performanceStats.map((stat, index) => (
+              <div key={stat.label} className="text-center p-4 bg-slate-700/30 rounded-lg border border-slate-600/20">
+                <div className="text-slate-400 text-xs uppercase tracking-wide mb-2">{stat.category}</div>
+                <div className="text-white text-xl font-bold mb-1">{stat.value}</div>
+                <div className="text-slate-400 text-sm">{stat.label}</div>
+              </div>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 };
