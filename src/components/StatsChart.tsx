@@ -32,8 +32,8 @@ const StatsChart = () => {
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
       return (
-        <div className="bg-white/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-white/20">
-          <p className="font-bold text-gray-800 mb-2">{`${label}`}</p>
+        <div className="bg-slate-800/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-slate-600/50">
+          <p className="font-bold text-white mb-2">{`${label}`}</p>
           {payload.map((pld: any, index: number) => (
             <p key={index} style={{ color: pld.color }} className="font-semibold">
               {`${pld.dataKey}: ${pld.value}`}
@@ -48,10 +48,10 @@ const StatsChart = () => {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
       {/* Wins vs Losses Chart */}
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 xl:col-span-2">
-        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-green-600/10 border-b border-white/10">
-          <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex items-center justify-center">
+      <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-700/50 xl:col-span-2">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center">
               📊
             </div>
             Wins vs Losses Analysis
@@ -60,15 +60,15 @@ const StatsChart = () => {
         <CardContent className="p-6">
           <ResponsiveContainer width="100%" height={350}>
             <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
               <XAxis 
                 dataKey="name" 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#94A3B8', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#94A3B8' }}
               />
               <YAxis 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#94A3B8', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#94A3B8' }}
               />
               <Tooltip content={<CustomTooltip />} />
               <Bar 
@@ -103,10 +103,10 @@ const StatsChart = () => {
       </Card>
 
       {/* Points Distribution Pie Chart */}
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20">
-        <CardHeader className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 border-b border-white/10">
-          <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center">
+      <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-700/50">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
               🥧
             </div>
             Points Distribution
@@ -124,7 +124,7 @@ const StatsChart = () => {
                 outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
-                stroke="#fff"
+                stroke="#1e293b"
                 strokeWidth={3}
               >
                 {pieData.map((entry, index) => (
@@ -141,10 +141,10 @@ const StatsChart = () => {
       </Card>
 
       {/* Performance Trends */}
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 xl:col-span-3">
-        <CardHeader className="bg-gradient-to-r from-orange-600/10 to-red-600/10 border-b border-white/10">
-          <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
-            <div className="w-8 h-8 bg-gradient-to-r from-orange-600 to-red-600 rounded-full flex items-center justify-center">
+      <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-700/50 xl:col-span-3">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-3">
+            <div className="w-8 h-8 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
               📈
             </div>
             Team Performance Metrics
@@ -153,15 +153,15 @@ const StatsChart = () => {
         <CardContent className="p-6">
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={performanceData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
               <XAxis 
                 dataKey="name" 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#94A3B8', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#94A3B8' }}
               />
               <YAxis 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#94A3B8', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#94A3B8' }}
               />
               <Tooltip content={<CustomTooltip />} />
               <Line 

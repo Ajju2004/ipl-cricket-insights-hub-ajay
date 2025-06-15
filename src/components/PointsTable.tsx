@@ -46,27 +46,24 @@ const PointsTable = () => {
   };
 
   const getPositionColor = (position: number) => {
-    if (position === 1) return "bg-gradient-to-r from-yellow-400/20 to-orange-500/20 border-l-4 border-yellow-400";
-    if (position <= 4) return "bg-gradient-to-r from-green-400/10 to-emerald-500/10 border-l-4 border-green-400";
-    if (position <= 6) return "bg-gradient-to-r from-blue-400/10 to-indigo-500/10 border-l-4 border-blue-400";
-    return "bg-gradient-to-r from-gray-400/5 to-gray-500/5 border-l-4 border-gray-400";
+    if (position === 1) return "bg-gradient-to-r from-yellow-500/20 to-orange-500/20 border-l-4 border-yellow-400";
+    if (position <= 4) return "bg-gradient-to-r from-green-500/10 to-emerald-500/10 border-l-4 border-green-400";
+    if (position <= 6) return "bg-gradient-to-r from-blue-500/10 to-indigo-500/10 border-l-4 border-blue-400";
+    return "bg-gradient-to-r from-slate-500/5 to-slate-600/5 border-l-4 border-slate-400";
   };
 
   const getPositionBadge = (position: number) => {
-    if (position === 1) return <Trophy size={16} className="text-yellow-500 mr-2" />;
-    if (position <= 4) return <TrendingUp size={16} className="text-green-500 mr-2" />;
-    return <TrendingDown size={16} className="text-gray-400 mr-2" />;
+    if (position === 1) return <Trophy size={16} className="text-yellow-400 mr-2" />;
+    if (position <= 4) return <TrendingUp size={16} className="text-green-400 mr-2" />;
+    return <TrendingDown size={16} className="text-slate-400 mr-2" />;
   };
 
   return (
     <>
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 overflow-hidden">
-        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-b border-white/10">
-          <CardTitle className="text-2xl font-black text-gray-800 dark:text-white flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
-              🏆
-            </div>
-            IPL 2025 Points Table
+      <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-700/50">
+        <CardHeader>
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
+            🏆 IPL 2025 Points Table
             <div className="ml-auto flex items-center gap-2">
               <Button
                 onClick={() => setViewMode("pictorial")}
@@ -95,7 +92,7 @@ const PointsTable = () => {
                 <Boxes size={16} className="mr-1" />
                 3D View
               </Button>
-              <div className="text-sm font-normal bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              <div className="text-sm font-normal text-purple-300">
                 Final Standings
               </div>
             </div>
@@ -118,24 +115,24 @@ const PointsTable = () => {
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-b-2 border-gray-200 dark:border-gray-700">
-                    <TableHead className="w-16 font-bold text-gray-700 dark:text-gray-300">Pos</TableHead>
-                    <TableHead className="font-bold text-gray-700 dark:text-gray-300 min-w-[200px]">Team</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">M</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">W</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">L</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">Pts</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">NRR</TableHead>
+                  <TableRow className="bg-slate-700/40 border-b-2 border-slate-600/50">
+                    <TableHead className="w-16 font-bold text-slate-300">Pos</TableHead>
+                    <TableHead className="font-bold text-slate-300 min-w-[200px]">Team</TableHead>
+                    <TableHead className="text-center font-bold text-slate-300">M</TableHead>
+                    <TableHead className="text-center font-bold text-slate-300">W</TableHead>
+                    <TableHead className="text-center font-bold text-slate-300">L</TableHead>
+                    <TableHead className="text-center font-bold text-slate-300">Pts</TableHead>
+                    <TableHead className="text-center font-bold text-slate-300">NRR</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {sortedTeams.map((team, index) => (
                     <TableRow 
                       key={team.id} 
-                      className={`hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-300 cursor-pointer ${getPositionColor(index + 1)}`}
+                      className={`hover:bg-slate-700/40 transition-all duration-300 cursor-pointer ${getPositionColor(index + 1)}`}
                       onClick={() => handleTeamClick(team)}
                     >
-                      <TableCell className="font-bold text-lg">
+                      <TableCell className="font-bold text-lg text-white">
                         <div className="flex items-center">
                           {getPositionBadge(index + 1)}
                           {index + 1}
@@ -143,7 +140,7 @@ const PointsTable = () => {
                       </TableCell>
                       <TableCell className="font-semibold">
                         <div className="flex items-center gap-3">
-                          <Avatar className="w-12 h-12 ring-2 ring-white shadow-lg">
+                          <Avatar className="w-12 h-12 ring-2 ring-slate-600 shadow-lg">
                             <AvatarImage 
                               src={team.logoUrl} 
                               alt={`${team.name} logo`}
@@ -154,32 +151,32 @@ const PointsTable = () => {
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <div className="hidden sm:block font-bold text-lg text-gray-800 dark:text-white">
+                            <div className="hidden sm:block font-bold text-lg text-white">
                               {team.name}
                             </div>
-                            <div className="sm:hidden font-bold text-lg text-gray-800 dark:text-white">
+                            <div className="sm:hidden font-bold text-lg text-white">
                               {team.shortName}
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                            <div className="text-xs text-slate-400 font-medium">
                               {index === 0 ? "🏆 Champions" : index < 4 ? "✅ Qualified" : "❌ Eliminated"}
                             </div>
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center font-bold text-lg">{team.matches}</TableCell>
-                      <TableCell className="text-center text-green-600 font-bold text-lg bg-green-50 dark:bg-green-900/20 rounded-md">
+                      <TableCell className="text-center font-bold text-lg text-white">{team.matches}</TableCell>
+                      <TableCell className="text-center text-green-400 font-bold text-lg bg-green-500/20 rounded-md">
                         {team.wins}
                       </TableCell>
-                      <TableCell className="text-center text-red-600 font-bold text-lg bg-red-50 dark:bg-red-900/20 rounded-md">
+                      <TableCell className="text-center text-red-400 font-bold text-lg bg-red-500/20 rounded-md">
                         {team.losses}
                       </TableCell>
-                      <TableCell className="text-center font-black text-xl text-blue-600 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+                      <TableCell className="text-center font-black text-xl text-blue-400 bg-blue-500/20 rounded-md">
                         {team.points}
                       </TableCell>
                       <TableCell className={`text-center font-bold text-lg rounded-md ${
                         team.nrr >= 0 
-                          ? 'text-green-600 bg-green-50 dark:bg-green-900/20' 
-                          : 'text-red-600 bg-red-50 dark:bg-red-900/20'
+                          ? 'text-green-400 bg-green-500/20' 
+                          : 'text-red-400 bg-red-500/20'
                       }`}>
                         {team.nrr >= 0 ? '+' : ''}{team.nrr.toFixed(2)}
                       </TableCell>
