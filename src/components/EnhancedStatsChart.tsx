@@ -3,7 +3,6 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { teams } from "@/data/iplData";
 import CustomTooltip from "./CustomTooltip";
-import { useState } from "react";
 
 const COLORS = [
   '#3B82F6', '#10B981', '#F59E0B', '#EF4444', 
@@ -17,8 +16,6 @@ interface EnhancedStatsChartProps {
 }
 
 const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartProps) => {
-  const [activeChart, setActiveChart] = useState("performance");
-
   const chartData = filteredTeams.map(team => ({
     name: team.shortName,
     wins: team.wins,
@@ -41,15 +38,15 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-slate-800/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-slate-600 text-white">
-          <p className="font-bold text-lg mb-2">{data.fullName}</p>
+        <div className="bg-slate-800/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-slate-500/40 text-white">
+          <p className="font-black text-xl mb-3 text-blue-300">{data.fullName}</p>
           {payload.map((pld: any, index: number) => (
-            <p key={index} style={{ color: pld.color }} className="font-semibold">
+            <p key={index} style={{ color: pld.color }} className="font-bold text-lg">
               {`${pld.dataKey}: ${pld.value}`}
             </p>
           ))}
-          <div className="mt-2 pt-2 border-t border-slate-600">
-            <p className="text-xs text-slate-300">Click to view detailed analysis</p>
+          <div className="mt-3 pt-3 border-t border-slate-600">
+            <p className="text-sm text-slate-300 font-semibold">Click to view detailed analysis</p>
           </div>
         </div>
       );
@@ -64,9 +61,9 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
       {/* Enhanced Performance Chart */}
-      <Card className="shadow-2xl bg-slate-800/40 backdrop-blur-md border-slate-600/30 xl:col-span-2">
-        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-green-600/10 border-b border-slate-600/30">
-          <CardTitle className="text-xl font-black text-white flex items-center gap-3">
+      <Card className="shadow-2xl bg-slate-800/60 backdrop-blur-xl border-slate-500/40 xl:col-span-2">
+        <CardHeader className="bg-gradient-to-r from-blue-600/20 to-green-600/20 border-b border-slate-500/40">
+          <CardTitle className="text-2xl font-black text-white flex items-center gap-4">
             <CustomTooltip 
               data={{
                 title: "Performance Analysis",
@@ -79,34 +76,34 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
                 ]
               }}
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex items-center justify-center cursor-help">
-                📊
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-green-600 rounded-full flex items-center justify-center cursor-help shadow-lg">
+                <span className="text-2xl">📊</span>
               </div>
             </CustomTooltip>
             Team Performance Analysis
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-8">
           <ResponsiveContainer width="100%" height={350}>
             <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#475569" strokeWidth={2} />
               <XAxis 
                 dataKey="name" 
-                tick={{ fill: '#CBD5E1', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#475569' }}
+                tick={{ fill: '#E2E8F0', fontWeight: 'bold', fontSize: 14 }}
+                axisLine={{ stroke: '#64748B', strokeWidth: 2 }}
               />
               <YAxis 
-                tick={{ fill: '#CBD5E1', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#475569' }}
+                tick={{ fill: '#E2E8F0', fontWeight: 'bold', fontSize: 14 }}
+                axisLine={{ stroke: '#64748B', strokeWidth: 2 }}
               />
               <Tooltip content={<CustomChartTooltip />} />
               <Bar 
                 dataKey="wins" 
                 fill="url(#winsGradient)" 
                 name="Wins" 
-                radius={[4, 4, 0, 0]}
+                radius={[6, 6, 0, 0]}
                 stroke="#10B981"
-                strokeWidth={2}
+                strokeWidth={3}
                 onClick={handleBarClick}
                 style={{ cursor: 'pointer' }}
               />
@@ -114,20 +111,20 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
                 dataKey="losses" 
                 fill="url(#lossesGradient)" 
                 name="Losses" 
-                radius={[4, 4, 0, 0]}
+                radius={[6, 6, 0, 0]}
                 stroke="#EF4444"
-                strokeWidth={2}
+                strokeWidth={3}
                 onClick={handleBarClick}
                 style={{ cursor: 'pointer' }}
               />
               <defs>
                 <linearGradient id="winsGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.8}/>
-                  <stop offset="100%" stopColor="#10B981" stopOpacity={0.4}/>
+                  <stop offset="0%" stopColor="#10B981" stopOpacity={0.9}/>
+                  <stop offset="100%" stopColor="#10B981" stopOpacity={0.5}/>
                 </linearGradient>
                 <linearGradient id="lossesGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stopColor="#EF4444" stopOpacity={0.8}/>
-                  <stop offset="100%" stopColor="#EF4444" stopOpacity={0.4}/>
+                  <stop offset="0%" stopColor="#EF4444" stopOpacity={0.9}/>
+                  <stop offset="100%" stopColor="#EF4444" stopOpacity={0.5}/>
                 </linearGradient>
               </defs>
             </BarChart>
@@ -136,9 +133,9 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
       </Card>
 
       {/* Enhanced Points Distribution */}
-      <Card className="shadow-2xl bg-slate-800/40 backdrop-blur-md border-slate-600/30">
-        <CardHeader className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 border-b border-slate-600/30">
-          <CardTitle className="text-xl font-black text-white flex items-center gap-3">
+      <Card className="shadow-2xl bg-slate-800/60 backdrop-blur-xl border-slate-500/40">
+        <CardHeader className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 border-b border-slate-500/40">
+          <CardTitle className="text-2xl font-black text-white flex items-center gap-4">
             <CustomTooltip 
               data={{
                 title: "Points Distribution",
@@ -151,14 +148,14 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
                 ]
               }}
             >
-              <div className="w-8 h-8 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center cursor-help">
-                🥧
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full flex items-center justify-center cursor-help shadow-lg">
+                <span className="text-2xl">🥧</span>
               </div>
             </CustomTooltip>
             Points Distribution
           </CardTitle>
         </CardHeader>
-        <CardContent className="p-6">
+        <CardContent className="p-8">
           <ResponsiveContainer width="100%" height={350}>
             <PieChart>
               <Pie
@@ -171,7 +168,7 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
                 fill="#8884d8"
                 dataKey="value"
                 stroke="#475569"
-                strokeWidth={3}
+                strokeWidth={4}
                 onClick={handleBarClick}
                 style={{ cursor: 'pointer' }}
               >
