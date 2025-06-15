@@ -7,8 +7,8 @@ import NaturalLanguageQuery from "./NaturalLanguageQuery";
 const DashboardHeader = () => {
   return (
     <div className="mb-8 relative">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
+      {/* Extended Background Image that covers header and query section */}
+      <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl" style={{ height: 'calc(100% + 120px)' }}>
         <img 
           src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
           alt="Technology background"
@@ -109,8 +109,8 @@ const DashboardHeader = () => {
           </div>
         </div>
 
-        {/* Modern Query Interface */}
-        <div className="mx-8 mb-4">
+        {/* Modern Query Interface - now included within the background */}
+        <div className="mx-8 mb-4 pb-8">
           <div className="bg-slate-800/40 backdrop-blur-md rounded-xl p-4 border border-slate-700/30">
             <NaturalLanguageQuery />
           </div>
