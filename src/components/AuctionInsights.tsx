@@ -35,33 +35,33 @@ const AuctionInsights = () => {
   
   return (
     <>
-      <Card className="shadow-xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md">
+      <Card className="shadow-xl bg-slate-800/40 backdrop-blur-md border-slate-600/30">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
             💰 IPL 2025 Mega Auction Highlights
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-6">
           {/* Record Purchases */}
           <div>
-            <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-              <TrendingUp className="text-green-600" size={20} />
+            <h3 className="font-semibold text-lg mb-3 flex items-center gap-2 text-white">
+              <TrendingUp className="text-green-400" size={20} />
               Record Purchases
             </h3>
             <div className="space-y-3">
               {recordBuys.map((player, index) => (
                 <div 
                   key={index} 
-                  className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-50/80 to-orange-50/80 dark:from-yellow-900/20 dark:to-orange-900/20 rounded-lg border border-yellow-200 dark:border-yellow-700 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
+                  className="flex justify-between items-center p-3 bg-gradient-to-r from-yellow-900/30 to-orange-900/30 rounded-lg border border-yellow-600/30 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
                   onClick={() => handlePlayerClick(player.player, player.team)}
                 >
                   <div>
-                    <div className="font-semibold text-gray-800 dark:text-white">{player.player}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">{player.team}</div>
+                    <div className="font-semibold text-white">{player.player}</div>
+                    <div className="text-sm text-slate-300">{player.team}</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xl font-bold text-green-600">₹{player.price} cr</div>
-                    {index === 0 && <div className="text-xs text-red-500 font-medium">Record Breaking!</div>}
+                    <div className="text-xl font-bold text-green-400">₹{player.price} cr</div>
+                    {index === 0 && <div className="text-xs text-red-400 font-medium">Record Breaking!</div>}
                   </div>
                 </div>
               ))}
@@ -71,22 +71,22 @@ const AuctionInsights = () => {
           {/* Youngest Player */}
           {youngestPlayer && (
             <div>
-              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-                <Users className="text-blue-600" size={20} />
+              <h3 className="font-semibold text-lg mb-3 flex items-center gap-2 text-white">
+                <Users className="text-blue-400" size={20} />
                 Youngest Player
               </h3>
               <div 
-                className="p-4 bg-gradient-to-r from-blue-50/80 to-indigo-50/80 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg border border-blue-200 dark:border-blue-700 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
+                className="p-4 bg-gradient-to-r from-blue-900/30 to-indigo-900/30 rounded-lg border border-blue-600/30 cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
                 onClick={() => handlePlayerClick(youngestPlayer.player, youngestPlayer.team)}
               >
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold text-lg text-gray-800 dark:text-white">{youngestPlayer.player}</div>
-                    <div className="text-sm text-gray-600 dark:text-gray-300">{youngestPlayer.team} • {youngestPlayer.age} years old</div>
+                    <div className="font-bold text-lg text-white">{youngestPlayer.player}</div>
+                    <div className="text-sm text-slate-300">{youngestPlayer.team} • {youngestPlayer.age} years old</div>
                   </div>
                   <div className="text-right">
-                    <div className="text-lg font-bold text-blue-600">₹{youngestPlayer.price} cr</div>
-                    <div className="text-xs text-purple-600 font-medium">Historic Young Buy!</div>
+                    <div className="text-lg font-bold text-blue-400">₹{youngestPlayer.price} cr</div>
+                    <div className="text-xs text-purple-400 font-medium">Historic Young Buy!</div>
                   </div>
                 </div>
               </div>
@@ -95,24 +95,24 @@ const AuctionInsights = () => {
 
           {/* Top Auction Spends by Team */}
           <div>
-            <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
-              <DollarSign className="text-purple-600" size={20} />
+            <h3 className="font-semibold text-lg mb-3 flex items-center gap-2 text-white">
+              <DollarSign className="text-purple-400" size={20} />
               Top Team Auction Spends
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
               {teams.slice(0, 6).map((team) => (
                 <div 
                   key={team.id} 
-                  className="flex justify-between items-center p-3 bg-gray-50/80 dark:bg-gray-800/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm"
+                  className="flex justify-between items-center p-3 bg-slate-700/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform backdrop-blur-sm border border-slate-500/30"
                   onClick={() => handleTeamClick(team)}
                 >
                   <div className="flex items-center gap-2">
                     <span className="text-lg">{team.logo}</span>
-                    <span className="font-medium text-gray-800 dark:text-white">{team.shortName}</span>
+                    <span className="font-medium text-white">{team.shortName}</span>
                   </div>
                   <div className="text-right">
-                    <div className="font-bold text-gray-800 dark:text-white">₹{team.auctionSpend} cr</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">Remaining: ₹{team.remainingPurse} cr</div>
+                    <div className="font-bold text-white">₹{team.auctionSpend} cr</div>
+                    <div className="text-xs text-slate-400">Remaining: ₹{team.remainingPurse} cr</div>
                   </div>
                 </div>
               ))}

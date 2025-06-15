@@ -60,9 +60,9 @@ const PointsTable = () => {
 
   return (
     <>
-      <Card className="shadow-2xl bg-white/95 dark:bg-background backdrop-blur-md border-white/20 overflow-hidden">
-        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-b border-white/10">
-          <CardTitle className="text-2xl font-black text-gray-800 dark:text-white flex items-center gap-3">
+      <Card className="shadow-xl bg-slate-800/40 backdrop-blur-md border-slate-600/30 overflow-hidden">
+        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-purple-600/10 border-b border-slate-600/30">
+          <CardTitle className="text-2xl font-black text-white flex items-center gap-3">
             <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full flex items-center justify-center">
               🏆
             </div>
@@ -118,21 +118,21 @@ const PointsTable = () => {
             <div className="overflow-x-auto">
               <Table>
                 <TableHeader>
-                  <TableRow className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 border-b-2 border-gray-200 dark:border-gray-700">
-                    <TableHead className="w-16 font-bold text-gray-700 dark:text-gray-300">Pos</TableHead>
-                    <TableHead className="font-bold text-gray-700 dark:text-gray-300 min-w-[200px]">Team</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">M</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">W</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">L</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">Pts</TableHead>
-                    <TableHead className="text-center font-bold text-gray-700 dark:text-gray-300">NRR</TableHead>
+                  <TableRow className="bg-gradient-to-r from-slate-700/50 to-slate-600/50 border-b-2 border-slate-600/50 hover:bg-slate-700/30">
+                    <TableHead className="w-16 font-bold text-slate-200">Pos</TableHead>
+                    <TableHead className="font-bold text-slate-200 min-w-[200px]">Team</TableHead>
+                    <TableHead className="text-center font-bold text-slate-200">M</TableHead>
+                    <TableHead className="text-center font-bold text-slate-200">W</TableHead>
+                    <TableHead className="text-center font-bold text-slate-200">L</TableHead>
+                    <TableHead className="text-center font-bold text-slate-200">Pts</TableHead>
+                    <TableHead className="text-center font-bold text-slate-200">NRR</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {sortedTeams.map((team, index) => (
                     <TableRow 
                       key={team.id} 
-                      className={`hover:bg-gray-50/80 dark:hover:bg-gray-800/80 transition-all duration-300 cursor-pointer ${getPositionColor(index + 1)}`}
+                      className={`hover:bg-slate-700/50 transition-all duration-300 cursor-pointer ${getPositionColor(index + 1)}`}
                       onClick={() => handleTeamClick(team)}
                     >
                       <TableCell className="font-bold text-lg">
@@ -154,32 +154,32 @@ const PointsTable = () => {
                             </AvatarFallback>
                           </Avatar>
                           <div>
-                            <div className="hidden sm:block font-bold text-lg text-gray-800 dark:text-white">
+                            <div className="hidden sm:block font-bold text-lg text-white">
                               {team.name}
                             </div>
-                            <div className="sm:hidden font-bold text-lg text-gray-800 dark:text-white">
+                            <div className="sm:hidden font-bold text-lg text-white">
                               {team.shortName}
                             </div>
-                            <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">
+                            <div className="text-xs text-slate-300 font-medium">
                               {index === 0 ? "🏆 Champions" : index < 4 ? "✅ Qualified" : "❌ Eliminated"}
                             </div>
                           </div>
                         </div>
                       </TableCell>
-                      <TableCell className="text-center font-bold text-lg">{team.matches}</TableCell>
-                      <TableCell className="text-center text-green-600 font-bold text-lg bg-green-50 dark:bg-green-900/20 rounded-md">
+                      <TableCell className="text-center font-bold text-lg text-white">{team.matches}</TableCell>
+                      <TableCell className="text-center text-green-400 font-bold text-lg bg-green-900/30 rounded-md">
                         {team.wins}
                       </TableCell>
-                      <TableCell className="text-center text-red-600 font-bold text-lg bg-red-50 dark:bg-red-900/20 rounded-md">
+                      <TableCell className="text-center text-red-400 font-bold text-lg bg-red-900/30 rounded-md">
                         {team.losses}
                       </TableCell>
-                      <TableCell className="text-center font-black text-xl text-blue-600 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+                      <TableCell className="text-center font-black text-xl text-blue-400 bg-blue-900/30 rounded-md">
                         {team.points}
                       </TableCell>
                       <TableCell className={`text-center font-bold text-lg rounded-md ${
                         team.nrr >= 0 
-                          ? 'text-green-600 bg-green-50 dark:bg-green-900/20' 
-                          : 'text-red-600 bg-red-50 dark:bg-red-900/20'
+                          ? 'text-green-400 bg-green-900/30' 
+                          : 'text-red-400 bg-red-900/30'
                       }`}>
                         {team.nrr >= 0 ? '+' : ''}{team.nrr.toFixed(2)}
                       </TableCell>

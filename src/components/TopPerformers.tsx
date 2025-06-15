@@ -49,9 +49,9 @@ const TopPerformers = () => {
 
   return (
     <>
-      <Card className="shadow-xl bg-white/95 dark:bg-background">
+      <Card className="shadow-xl bg-slate-800/40 backdrop-blur-md border-slate-600/30">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-gray-800 dark:text-white flex items-center gap-2">
+          <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
             ⭐ Top Performers IPL 2025
             <div className="ml-auto flex items-center gap-2">
               <Button
@@ -80,16 +80,16 @@ const TopPerformers = () => {
             <PictorialTopPerformers />
           ) : (
             <Tabs defaultValue="batsmen" className="w-full">
-              <TabsList className="grid w-full grid-cols-3">
-                <TabsTrigger value="batsmen" className="flex items-center gap-2">
+              <TabsList className="grid w-full grid-cols-3 bg-slate-700/50">
+                <TabsTrigger value="batsmen" className="flex items-center gap-2 data-[state=active]:bg-slate-600 data-[state=active]:text-white text-slate-300">
                   <TrendingUp size={16} />
                   Batsmen
                 </TabsTrigger>
-                <TabsTrigger value="bowlers" className="flex items-center gap-2">
+                <TabsTrigger value="bowlers" className="flex items-center gap-2 data-[state=active]:bg-slate-600 data-[state=active]:text-white text-slate-300">
                   <Target size={16} />
                   Bowlers
                 </TabsTrigger>
-                <TabsTrigger value="mvp" className="flex items-center gap-2">
+                <TabsTrigger value="mvp" className="flex items-center gap-2 data-[state=active]:bg-slate-600 data-[state=active]:text-white text-slate-300">
                   <Crown size={16} />
                   MVP Race
                 </TabsTrigger>
@@ -101,7 +101,7 @@ const TopPerformers = () => {
                   return (
                     <div 
                       key={player.id} 
-                      className="flex items-center justify-between p-3 bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+                      className="flex items-center justify-between p-3 bg-gradient-to-r from-slate-700/40 to-slate-600/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform border border-slate-500/30"
                       onClick={() => handlePlayerClick(player)}
                     >
                       <div className="flex items-center gap-3">
@@ -119,18 +119,18 @@ const TopPerformers = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+                          <div className="font-semibold text-white flex items-center gap-2">
                             {player.name}
                             {index === 0 && <span className="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded">Orange Cap</span>}
                             {player.isExpensive && <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">₹27cr</span>}
                             {player.isYoungest && <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">13 yrs</span>}
                           </div>
-                          <div className="text-sm text-gray-600 dark:text-gray-300">{player.team} • SR: {player.strikeRate}</div>
+                          <div className="text-sm text-slate-300">{player.team} • SR: {player.strikeRate}</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-lg text-orange-600">{player.runs}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">runs • Avg: {player.average}</div>
+                        <div className="font-bold text-lg text-orange-400">{player.runs}</div>
+                        <div className="text-sm text-slate-300">runs • Avg: {player.average}</div>
                       </div>
                     </div>
                   );
@@ -143,7 +143,7 @@ const TopPerformers = () => {
                   return (
                     <div 
                       key={player.id} 
-                      className="flex items-center justify-between p-3 bg-gradient-to-r from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+                      className="flex items-center justify-between p-3 bg-gradient-to-r from-slate-700/40 to-slate-600/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform border border-slate-500/30"
                       onClick={() => handlePlayerClick(player)}
                     >
                       <div className="flex items-center gap-3">
@@ -161,16 +161,16 @@ const TopPerformers = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+                          <div className="font-semibold text-white flex items-center gap-2">
                             {player.name}
                             {index === 0 && <span className="text-xs bg-purple-100 text-purple-700 px-2 py-1 rounded">Purple Cap</span>}
                           </div>
-                          <div className="text-sm text-gray-600 dark:text-gray-300">{player.team} • Avg: {player.average}</div>
+                          <div className="text-sm text-slate-300">{player.team} • Avg: {player.average}</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-lg text-red-600">{player.wickets}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">wickets</div>
+                        <div className="font-bold text-lg text-red-400">{player.wickets}</div>
+                        <div className="text-sm text-slate-300">wickets</div>
                       </div>
                     </div>
                   );
@@ -183,7 +183,7 @@ const TopPerformers = () => {
                   return (
                     <div 
                       key={player.id} 
-                      className="flex items-center justify-between p-3 bg-gradient-to-r from-yellow-50 to-amber-50 dark:from-yellow-900/20 dark:to-amber-900/20 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform"
+                      className="flex items-center justify-between p-3 bg-gradient-to-r from-slate-700/40 to-slate-600/40 rounded-lg cursor-pointer hover:scale-[1.02] transition-transform border border-slate-500/30"
                       onClick={() => handlePlayerClick(player)}
                     >
                       <div className="flex items-center gap-3">
@@ -201,16 +201,16 @@ const TopPerformers = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div>
-                          <div className="font-semibold text-gray-800 dark:text-white flex items-center gap-2">
+                          <div className="font-semibold text-white flex items-center gap-2">
                             {player.name}
                             {index === 0 && <span className="text-xs bg-yellow-100 text-yellow-700 px-2 py-1 rounded">MVP Winner</span>}
                           </div>
-                          <div className="text-sm text-gray-600 dark:text-gray-300">{player.team} • {player.runs} runs, {player.wickets} wickets</div>
+                          <div className="text-sm text-slate-300">{player.team} • {player.runs} runs, {player.wickets} wickets</div>
                         </div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-lg text-purple-600">{player.mvpPoints}</div>
-                        <div className="text-sm text-gray-600 dark:text-gray-300">MVP points</div>
+                        <div className="font-bold text-lg text-purple-400">{player.mvpPoints}</div>
+                        <div className="text-sm text-slate-300">MVP points</div>
                       </div>
                     </div>
                   );

@@ -41,15 +41,15 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-gray-900/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-gray-700 text-white">
+        <div className="bg-slate-800/95 backdrop-blur-md p-4 rounded-xl shadow-2xl border border-slate-600 text-white">
           <p className="font-bold text-lg mb-2">{data.fullName}</p>
           {payload.map((pld: any, index: number) => (
             <p key={index} style={{ color: pld.color }} className="font-semibold">
               {`${pld.dataKey}: ${pld.value}`}
             </p>
           ))}
-          <div className="mt-2 pt-2 border-t border-gray-600">
-            <p className="text-xs text-gray-300">Click to view detailed analysis</p>
+          <div className="mt-2 pt-2 border-t border-slate-600">
+            <p className="text-xs text-slate-300">Click to view detailed analysis</p>
           </div>
         </div>
       );
@@ -64,9 +64,9 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
   return (
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
       {/* Enhanced Performance Chart */}
-      <Card className="shadow-2xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border-white/20 xl:col-span-2">
-        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-green-600/10 border-b border-white/10">
-          <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
+      <Card className="shadow-2xl bg-slate-800/40 backdrop-blur-md border-slate-600/30 xl:col-span-2">
+        <CardHeader className="bg-gradient-to-r from-blue-600/10 to-green-600/10 border-b border-slate-600/30">
+          <CardTitle className="text-xl font-black text-white flex items-center gap-3">
             <CustomTooltip 
               data={{
                 title: "Performance Analysis",
@@ -89,15 +89,15 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
         <CardContent className="p-6">
           <ResponsiveContainer width="100%" height={350}>
             <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
+              <CartesianGrid strokeDasharray="3 3" stroke="#475569" />
               <XAxis 
                 dataKey="name" 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#CBD5E1', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#475569' }}
               />
               <YAxis 
-                tick={{ fill: '#6B7280', fontWeight: 'bold' }}
-                axisLine={{ stroke: '#6B7280' }}
+                tick={{ fill: '#CBD5E1', fontWeight: 'bold' }}
+                axisLine={{ stroke: '#475569' }}
               />
               <Tooltip content={<CustomChartTooltip />} />
               <Bar 
@@ -136,9 +136,9 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
       </Card>
 
       {/* Enhanced Points Distribution */}
-      <Card className="shadow-2xl bg-white/70 dark:bg-slate-800/40 backdrop-blur-md border-white/20">
-        <CardHeader className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 border-b border-white/10">
-          <CardTitle className="text-xl font-black text-gray-800 dark:text-white flex items-center gap-3">
+      <Card className="shadow-2xl bg-slate-800/40 backdrop-blur-md border-slate-600/30">
+        <CardHeader className="bg-gradient-to-r from-purple-600/10 to-pink-600/10 border-b border-slate-600/30">
+          <CardTitle className="text-xl font-black text-white flex items-center gap-3">
             <CustomTooltip 
               data={{
                 title: "Points Distribution",
@@ -170,7 +170,7 @@ const EnhancedStatsChart = ({ filteredTeams, onDrillDown }: EnhancedStatsChartPr
                 outerRadius={100}
                 fill="#8884d8"
                 dataKey="value"
-                stroke="#fff"
+                stroke="#475569"
                 strokeWidth={3}
                 onClick={handleBarClick}
                 style={{ cursor: 'pointer' }}
