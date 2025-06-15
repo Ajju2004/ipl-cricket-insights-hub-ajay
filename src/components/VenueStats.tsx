@@ -5,7 +5,7 @@ import { MapPin } from "lucide-react";
 
 const VenueStats = () => {
   return (
-    <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-700/50">
+    <Card className="shadow-xl bg-slate-800/60 backdrop-blur-md border-slate-600/30">
       <CardHeader>
         <CardTitle className="text-xl font-bold text-white flex items-center gap-2">
           🏟️ Venue Statistics
@@ -14,7 +14,7 @@ const VenueStats = () => {
       <CardContent>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {venues.map((venue, index) => (
-            <div key={index} className="bg-slate-700/40 backdrop-blur-sm p-4 rounded-lg border border-slate-600/30 hover:bg-slate-700/60 transition-all duration-300">
+            <div key={index} className="bg-gradient-to-br from-slate-700/40 to-slate-600/40 p-4 rounded-lg border border-slate-500/30 backdrop-blur-sm">
               <div className="flex items-center gap-2 mb-2">
                 <MapPin size={18} className="text-purple-400" />
                 <h3 className="font-semibold text-white">{venue.name}</h3>
