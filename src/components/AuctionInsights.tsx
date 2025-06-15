@@ -52,7 +52,7 @@ const AuctionInsights = () => {
               {recordBuys.map((player, index) => (
                 <div 
                   key={index} 
-                  className="flex justify-between items-center p-3 bg-slate-700/40 backdrop-blur-sm rounded-lg border border-slate-600/30 cursor-pointer hover:bg-slate-700/60 transition-all duration-300"
+                  className="flex justify-between items-center p-3 bg-slate-800/70 backdrop-blur-sm rounded-lg border border-slate-600/50 cursor-pointer hover:bg-slate-700/80 transition-all duration-300"
                   onClick={() => handlePlayerClick(player.player, player.team)}
                 >
                   <div>
@@ -76,7 +76,7 @@ const AuctionInsights = () => {
                 Youngest Player
               </h3>
               <div 
-                className="p-4 bg-slate-700/40 backdrop-blur-sm rounded-lg border border-slate-600/30 cursor-pointer hover:bg-slate-700/60 transition-all duration-300"
+                className="p-4 bg-slate-800/70 backdrop-blur-sm rounded-lg border border-slate-600/50 cursor-pointer hover:bg-slate-700/80 transition-all duration-300"
                 onClick={() => handlePlayerClick(youngestPlayer.player, youngestPlayer.team)}
               >
                 <div className="flex justify-between items-center">
@@ -103,7 +103,7 @@ const AuctionInsights = () => {
               {teams.slice(0, 6).map((team) => (
                 <div 
                   key={team.id} 
-                  className="flex justify-between items-center p-3 bg-slate-700/30 backdrop-blur-sm rounded-lg border border-slate-600/20 cursor-pointer hover:bg-slate-700/50 transition-all duration-300"
+                  className="flex justify-between items-center p-3 bg-slate-800/60 backdrop-blur-sm rounded-lg border border-slate-600/40 cursor-pointer hover:bg-slate-700/70 transition-all duration-300"
                   onClick={() => handleTeamClick(team)}
                 >
                   <div className="flex items-center gap-2">
