@@ -7,10 +7,15 @@ import NaturalLanguageQuery from "./NaturalLanguageQuery";
 const DashboardHeader = () => {
   return (
     <div className="mb-8 relative">
-      {/* Modern Dark Background with Subtle Gradient */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0 overflow-hidden rounded-2xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800"></div>
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/20 via-transparent to-purple-900/10"></div>
+        <img 
+          src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=2000&q=80"
+          alt="Technology background"
+          className="w-full h-full object-cover opacity-20"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-900/90 via-gray-900/85 to-slate-800/90"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 via-transparent to-purple-900/20"></div>
       </div>
 
       <div className="relative z-20">
