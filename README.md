@@ -18,8 +18,7 @@ In fast-paced domains like sports analytics, timely insights can differentiate b
 
 ## 🧰 Tools & Technologies  
 - **Languages & Libraries**: Python (Pandas, NumPy), SQL.  
-- **Data Visualization**: Power BI, Tableau.  
-- **Data Storage & Processing**: (if applicable – mention any local/ cloud service or just “CSV / Parquet / SQL DB”).  
+- **Data Visualization**: Power BI, Tableau.   
 - **Version Control & Documentation**: GitHub, well-structured folder hierarchy, documented workflows.
 
 ## 📂 Repository Structure  
@@ -90,3 +89,4 @@ Deploy dashboards on cloud (Power BI Service / Tableau Server) for broader stake
 
 📄 Acknowledgements
 Thanks to the team at Trivera Tech Pvt Ltd (Kakinada) for providing the dataset and guidance during the data-analysis internship.
+take you to the projct--https://ipl-cricket-insights-hub-ajay.lovable.app/
